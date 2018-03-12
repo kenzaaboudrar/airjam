@@ -4,31 +4,33 @@
  background-position: center;
 }
 
-.info-container {
+.flat-info {
   padding: 20px;
+  h2, p {
+    margin: 0px;
+  }
 }
 .recap {
-  position: relative;
+
 }
-.main {
- position: absolute;
- top: 5px;
- left: 5px;
-}
-.details {
+.main-info {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
+}
+.title {
+
 }
 .user {
-  position: absolute;
-  right: 5px;
+
+}
+.details {
+ display: flex;
+ align-items: center;
 }
 .description {
 
 }
-.booking-container {
+.new-reservation {
   padding: 20px;
 }

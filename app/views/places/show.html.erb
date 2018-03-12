@@ -3,30 +3,31 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-      <div class="info-container">
+    <div class="col-md-7">
+      <div class="flat-info">
         <div class="recap">
-          <div class="main">
-            <p><strong><%= @place.category.upcase %></strong></p>
-            <h2><strong><%= @place.name %></strong></h2>
-            <p><%= @place.address %></p>
+          <p class="category"><%= @place.category.upcase %></p>
+          <div class="main-info">
+            <div class="title">
+              <h2><strong><%= @place.name %></strong></h2>
+              <p><%= @place.address %></p>
+            </div>
+            <div class="user text-center">
+              <% if @place.user.avatar.present? %>
+                <%= cl_image_tag @place.user.avatar, class: "avatar-large" %>
+              <% else %>
+                <p>Add a photo</p>
+              <% end %>
+              <p><%= @place.user.first_name %></p>
+            </div>
           </div>
           <div class="details">
-            <p><%= @place.stage_capacity %></p>
+            <p><i class="fas fa-users"></i><%= @place.stage_capacity %></p>
             <% if @place.equipped %>
               <p><%= "fully-equipped" %></p>
             <% else %>
               <p><%= "not equipped" %></p>
             <% end %>
-          </div>
-          <div class="user">
-            <% if @place.user.avatar.present? %>
-              <%= cl_image_tag @place.user.avatar, class: "avatar-large" %>
-            <% else %>
-              <p>Add a photo</p>
-            <% end %>
-
-            <p><%= @place.user.first_name %></p>
           </div>
         </div>
         <div class="description">
@@ -34,16 +35,14 @@
         </div>
       </div>
     </div>
-    <div class="col-ms-4">
-      <div class="booking-container">
-        <div class="new-reservation">
-          <p><strong><%= @place.price %>€</strong> per hour</p>
-          <%= simple_form_for [@place, @reservation] do |f| %>
-            <%= f.input :date %>
-            <%= f.input :duration %>
-            <%= f.submit class: "btn btn-primary" %>
-          <% end %>
-        </div>
+    <div class="col-ms-5">
+      <div class="new-reservation">
+        <p><strong><%= @place.price %>€</strong> per hour</p>
+        <%= simple_form_for [@place, @reservation] do |f| %>
+          <%= f.input :date %>
+          <%= f.input :duration %>
+          <%= f.submit class: "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   </div>
