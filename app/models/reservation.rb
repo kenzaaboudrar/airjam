@@ -3,5 +3,5 @@ class Reservation < ApplicationRecord
   belongs_to :users
   validates :date, presence: true
   validates :duration, presence: true
-  validates :date, uniqueness {scope: :place_id}
+  validates :date, uniqueness: {scope: :place_id}
 end
