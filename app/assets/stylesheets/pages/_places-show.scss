@@ -1,0 +1,34 @@
+.banner {
+ height: 400px;
+ background-size: cover !important;
+ background-position: center;
+}
+
+.info-container {
+  padding: 20px;
+}
+.recap {
+  position: relative;
+}
+.main {
+ position: absolute;
+ top: 5px;
+ left: 5px;
+}
+.details {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+.user {
+  position: absolute;
+  right: 5px;
+}
+.description {
+
+}
+.booking-container {
+  padding: 20px;
+}

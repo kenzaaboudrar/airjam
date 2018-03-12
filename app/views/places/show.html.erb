@@ -8,7 +8,7 @@
         <div class="recap">
           <div class="main">
             <p><strong><%= @place.category.upcase %></strong></p>
-            <h3><%= @place.name %></h3>
+            <h2><strong><%= @place.name %></strong></h2>
             <p><%= @place.address %></p>
           </div>
           <div class="details">
@@ -21,7 +21,7 @@
           </div>
           <div class="user">
             <% if @place.user.avatar.present? %>
-              <%= cl_image_path @place.user.avatar %>
+              <%= cl_image_tag @place.user.avatar, class: "avatar-large" %>
             <% else %>
               <p>Add a photo</p>
             <% end %>
