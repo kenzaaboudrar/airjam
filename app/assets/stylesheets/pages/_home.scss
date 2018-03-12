@@ -1,1 +1,23 @@
 // Specific CSS for your home-page
+.banner {
+  height: 470px;
+  background-size: cover;
+}
+
+.text-container {
+display: block;
+align-items: center;
+justify-content: center;
+color: white !important;
+ h1 {
+  padding-top: 50px;
+  font-size: 64px;
+ }
+ h3 {
+  padding-bottom: 100px;
+ }
+}
+
+.input-group {
+
+}

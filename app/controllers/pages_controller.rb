@@ -3,4 +3,8 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  # def search
+  #   TO DO JEUDI
+  # end
 end
