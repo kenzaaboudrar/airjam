@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <%= cl_image_tag(@user.avatar, width: 100, height: 100, crop: :fill) %>
+      <p><strong><%= @user.first_name %> <%= @user.last_name %></h2></strong></p>
+      <p><%= @user.email %></p>
+    </div>
+    <div class="col-sm-6 col-sm-offset-4">
+      <% @user.reservations.each do |reservation| %>
+        <%= cl_image_tag(reservation.place.photo, width: 100, height: 100, crop: :fill) %>
+        <% end %>
+      <p><strong><%= @user.first_name %> <%= @user.last_name %></h2></strong></p>
+      <p><%= @user.email %></p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-4">
+      <%= cl_image_tag(@user.band_photo, width: 100, height: 100, crop: :fill) %>
+      <p><strong><%= @user.band_name %></strong></p>
+      <p><%= @user.number_of_musicians %></p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-4">
+      <% @user.places.each do |place| %>
+      <p><strong><%= place.name %></strong></p>
+      <p><%= place.stage_capacity %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
