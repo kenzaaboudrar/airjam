@@ -20,7 +20,12 @@
             <% end %>
           </div>
           <div class="user">
-            <%= cl_image_path @place.user.photo %>
+            <% if @place.user.avatar.present? %>
+              <%= cl_image_path @place.user.avatar %>
+            <% else %>
+              <p>Add a photo</p>
+            <% end %>
+
             <p><%= @place.user.first_name %></p>
           </div>
         </div>
@@ -32,7 +37,7 @@
     <div class="col-ms-4">
       <div class="booking-container">
         <div class="new-reservation">
-          <p><strong><%= @place.price_per_hour %>€</strong> per hour</p>
+          <p><strong><%= @place.price %>€</strong> per hour</p>
           <%= simple_form_for [@place, @reservation] do |f| %>
             <%= f.input :date %>
             <%= f.input :duration %>
