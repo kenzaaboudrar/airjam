@@ -5,4 +5,6 @@ class User < ApplicationRecord
   has_many :reservations
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
+  mount_uploader :avatar, PhotoUploader
+  mount_uploader :band_photo, PhotoUploader
 end
