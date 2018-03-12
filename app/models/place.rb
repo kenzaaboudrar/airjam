@@ -1,5 +1,5 @@
 class Place < ApplicationRecord
-  belongs_to :users
+  belongs_to :user
   has_many :reservations
   validates :name, presence: true
   validates :address, presence: true
