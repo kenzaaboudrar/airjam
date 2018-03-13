@@ -4,7 +4,7 @@ class Place < ApplicationRecord
   validates :name, presence: true
   validates :address, presence: true
   validates :stage_capacity, presence: true
-  validates :equipped, presence: true
+  validates :price, presence: true
   validates :photo, presence: true
   validates :description, presence: true
   validates :category, presence: true
