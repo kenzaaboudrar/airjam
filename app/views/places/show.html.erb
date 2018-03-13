@@ -39,9 +39,17 @@
 
     <div class="col-md-4">
       <% if @place.user == current_user %>
-        <% @place.reservations.each do %>
+        <h3>Reservations</h3>
+        <% @place.reservations.order(:date).each do |reservation| %>
           <div class="reservation">
-
+            <div class="reservation-request">
+              <p><%= reservation.status.upcase %></p>
+              <h4><strong><%= reservation.price %>€</strong></h4>
+            </div>
+            <div class="time">
+              <h4><strong><%= reservation.date %></strong></h4>
+              <p>Duration: <%= reservation.duration %>h</p>
+            </div>
           </div>
         <% end %>
       <% else %>
