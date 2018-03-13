@@ -19,3 +19,25 @@
   margin-right: 20px;
   text-align: center;
 }
+
+.profile-card h3 {
+  margin-top: 10px;
+}
+
+.profile-card i {
+  margin-top: -10px;
+  opacity: 0.2;
+}
+
+.group-card {
+  background-color: white;
+  border: 1px solid #ECECEB;
+  padding: 0px;
+  height: 227px;
+  width: 270px;
+  text-align: center;
+}
+
+.group-card h3 {
+  margin-top: -10px;
+}
