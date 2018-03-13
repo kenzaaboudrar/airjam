@@ -11,9 +11,11 @@
     <% if @user.reservations.length >= 1 %>
       <div class="col-sm-9 flexbox">
         <div class="col-sm-6">
-          <h3><%= @user.reservations[0].place.name %></h3>
-          <p><%= @user.reservations[0].place.address%></p>
-          <p>Date:<%= @user.reservations[0].date%> - for: <%= @user.reservations[0].duration %>h</p>
+          <div class="add-padding">
+            <h3><%= @user.reservations[0].place.name %></h3>
+            <p><%= @user.reservations[0].place.address%></p>
+            <p>Date:<%= @user.reservations[0].date%> - for: <%= @user.reservations[0].duration %>h</p>
+          </div>
         </div>
         <div class="col-sm-3">
           <%= cl_image_tag(@user.reservations[0].place.photo, width: 225, height: 225, crop: :fill) %>
@@ -31,9 +33,11 @@
     <% if @user.reservations.length >= 2 %>
     <div class="col-sm-9 flexbox">
       <div class="col-sm-6">
-        <h3><%= @user.reservations[1].place.name %></h3>
-          <p><%= @user.reservations[1].place.address%></p>
-          <p>Date:<%= @user.reservations[1].date%> - for: <%= @user.reservations[1].duration %>h</p>
+        <div class="add-padding">
+          <h3><%= @user.reservations[1].place.name %></h3>
+            <p><%= @user.reservations[1].place.address%></p>
+            <p>Date:<%= @user.reservations[1].date%> - for: <%= @user.reservations[1].duration %>h</p>
+          </div>
       </div>
       <div class="col-sm-3">
         <%= cl_image_tag(@user.reservations[1].place.photo, width: 225, height: 225, crop: :fill) %>
@@ -53,9 +57,11 @@
     <% if @user.reservations.length >= 3 %>
     <div class="col-sm-9 flexbox">
       <div class="col-sm-6">
-        <h3><%= @user.reservations[2].place.name %></h3>
-          <p><%= @user.reservations[2].place.address%></p>
-          <p>Date:<%= @user.reservations[2].date%> - for: <%= @user.reservations[2].duration %>h</p>
+        <div class="add-padding">
+          <h3><%= @user.reservations[2].place.name %></h3>
+            <p><%= @user.reservations[2].place.address%></p>
+            <p>Date:<%= @user.reservations[2].date%> - for: <%= @user.reservations[2].duration %>h</p>
+          </div>
       </div>
       <div class="col-sm-3">
         <%= cl_image_tag(@user.reservations[2].place.photo, width: 225, height: 225, crop: :fill) %>
