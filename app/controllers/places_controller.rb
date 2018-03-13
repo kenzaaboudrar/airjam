@@ -21,9 +21,13 @@ class PlacesController < ApplicationController
   end
 
   def edit
+    @place = Place.find(params[:id])
   end
 
   def update
+    @place = Place.find(place_params)
+    authorize @place
+    #if @place.save
   end
 
   def destroy
