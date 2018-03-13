@@ -1,13 +1,8 @@
-.banner {
- height: 400px;
- background-size: cover !important;
- background-position: center;
-}
-
 .flat-info {
   padding: 20px;
   h2, p {
     margin: 0px;
+    font-weight: lighter;
   }
 }
 .recap {
@@ -22,15 +17,19 @@
 
 }
 .user {
-
+  padding-right: 20px;
 }
 .details {
  display: flex;
  align-items: center;
+ padding-top: 20px;
 }
 .description {
-
+margin-top: 25px;
 }
-.new-reservation {
+.reservation {
+  margin-top: 25px;
   padding: 20px;
+  border: 1px solid $gray;
+  border-radius: 1px;
 }

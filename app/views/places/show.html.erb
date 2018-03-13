@@ -3,6 +3,7 @@
 
 <div class="container">
   <div class="row">
+
     <div class="col-md-7">
       <div class="flat-info">
         <div class="recap">
@@ -22,11 +23,11 @@
             </div>
           </div>
           <div class="details">
-            <p><i class="fas fa-users"></i><%= @place.stage_capacity %></p>
+            <p><i class="fa fa-users"></i> <%= @place.stage_capacity %></p>
             <% if @place.equipped %>
-              <p><%= "fully-equipped" %></p>
+              <p><i class="fa fa-microphone"></i> <%= "fully-equipped" %></p>
             <% else %>
-              <p><%= "not equipped" %></p>
+              <p><i class="fa fa-microphone-slash"></i> <%= "not equipped" %></p>
             <% end %>
           </div>
         </div>
@@ -35,13 +36,14 @@
         </div>
       </div>
     </div>
-    <div class="col-ms-5">
-      <div class="new-reservation">
+
+    <div class="col-md-5">
+      <div class="reservation">
         <p><strong><%= @place.price %>€</strong> per hour</p>
         <%= simple_form_for [@place, @reservation] do |f| %>
           <%= f.input :date %>
           <%= f.input :duration %>
-          <%= f.submit class: "btn btn-primary" %>
+          <%= f.submit class: "btn btn-danger btn-full-width" %>
         <% end %>
       </div>
     </div>
