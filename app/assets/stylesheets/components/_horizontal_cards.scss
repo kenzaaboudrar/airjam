@@ -1,0 +1,21 @@
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding-right: 0;
+  border: 1px solid #ECECEB;
+}
+
+.flexbox .col-sm-6 {
+  padding: 30px;
+}
+
+.profile-card {
+  padding-top: 30px;
+  background-color: white;
+  border: 1px solid #ECECEB;
+  height: 227px;
+  width: 270px;
+  margin-right: 20px;
+  text-align: center;
+}
