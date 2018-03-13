@@ -2,12 +2,12 @@
 .home-banner {
   height: 470px;
   background-size: cover;
+  display: flex;
+  justify-content: center;
 }
 
 .text-container {
 display: block;
-align-items: center;
-justify-content: center;
 color: white !important;
  h1 {
   padding-top: 50px;
@@ -17,6 +17,9 @@ color: white !important;
  h3 {
   padding-bottom: 80px;
   font-weight: lighter;
+ }
+ .input-group {
+  margin: auto;
  }
  #text-link {
   color: white !important;
