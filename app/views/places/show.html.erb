@@ -1,10 +1,10 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @place.photo %>')">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('<%= cl_image_path @place.photo %>')">
 </div>
 
 <div class="container">
   <div class="row">
 
-    <div class="col-md-7">
+    <div class="col-md-8">
       <div class="flat-info">
         <div class="recap">
           <p class="category"><%= @place.category.upcase %></p>
@@ -37,13 +37,16 @@
       </div>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-4">
       <div class="reservation">
-        <p><strong><%= @place.price %>€</strong> per hour</p>
+        <div class="price">
+          <h4><strong><%= @place.price %>€</strong></h4>
+          <p>per hour</p>
+        </div>
         <%= simple_form_for [@place, @reservation] do |f| %>
           <%= f.input :date %>
           <%= f.input :duration %>
-          <%= f.submit class: "btn btn-danger btn-full-width" %>
+          <%= f.submit "Book this place", class: "btn btn-danger btn-full-width" %>
         <% end %>
       </div>
     </div>
