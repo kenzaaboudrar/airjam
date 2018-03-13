@@ -35,9 +35,22 @@
   padding: 0px;
   height: 227px;
   width: 270px;
+  margin-right: 20px;
+  h4 {
+  margin-top: -100px;
+  color: white;
   text-align: center;
+  }
+  p {
+  margin-top: 90px;
+  opacity: 0.2;
+  }
 }
 
-.group-card h3 {
-  margin-top: -10px;
+.places-card {
+  padding: 0px;
+  height: 227px;
+  width: 270px;
+  margin-right: 20px;
+  background-color: white;
 }
