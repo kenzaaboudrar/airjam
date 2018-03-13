@@ -12,17 +12,19 @@
       <div class="col-sm-9 flexbox">
         <div class="col-sm-6">
           <div class="add-padding">
-            <h3>  <%= @user.reservations[0].place.name %></h3>
-            <p><%= @user.reservations[0].place.address%></p>
+            <% @reservation = @user.reservations[0]%>
+            <h3>  <%= @reservation.place.name %></h3>
+            <p><%= @reservation.place.address%></p>
             <br>
-            <p><%= @user.reservations[0].date.day%> - <%= @user.reservations[0].date.month%> -  <%= @user.reservations[0].date.year%></p>
-            <p>for: <%= @user.reservations[0].duration %>h</p>
-
-            <p class="text-right"><%= link_to "Delete reservation", place_reservation_path(@user.reservations[0].place), method: :delete %></p>
+            <p><%= @reservation.date.day%> - <%= @reservation.date.month%> -  <%= @reservation.date.year%></p>
+            <p>for: <%= @reservation.duration %>h</p>
+            <p><%= @reservation.status %></p>
+            <p><%= link_to "Accept", accept_path(@reservation.place, @reservation), method: :accept %></p>
+            <p class="text-right"><%= link_to "Delete reservation", place_reservation_path(@reservation.place), method: :delete %></p>
           </div>
         </div>
         <div class="col-sm-3">
-          <%= cl_image_tag(@user.reservations[0].place.photo, width: 225, height: 225, crop: :fill) %>
+          <%= cl_image_tag(@reservation.place.photo, width: 225, height: 225, crop: :fill) %>
         </div>
       </div>
     <% end %>
@@ -38,16 +40,17 @@
     <div class="col-sm-9 flexbox">
       <div class="col-sm-6">
         <div class="add-padding">
-          <h3>  <%= @user.reservations[1].place.name %></h3>
-            <p><%= @user.reservations[1].place.address%></p>
+          <% @reservation = @user.reservations[1]%>
+          <h3>  <%= @reservation.place.name %></h3>
+            <p><%= @reservation.place.address%></p>
             <br>
-            <p><%= @user.reservations[1].date.day%> - <%= @user.reservations[1].date.month%> -  <%= @user.reservations[1].date.year%></p>
-            <p>for: <%= @user.reservations[1].duration %>h</p>
-            <p class="text-right"><%= link_to "Delete reservation", place_reservation_path(@user.reservations[1].place), method: :delete %></p>
+            <p><%= @reservation.date.day%> - <%= @reservation.date.month%> -  <%= @reservation.date.year%></p>
+            <p>for: <%= @reservation.duration %>h</p>
+            <p class="text-right"><%= link_to "Delete reservation", place_reservation_path(@reservation.place), method: :delete %></p>
         </div>
       </div>
       <div class="col-sm-3">
-        <%= cl_image_tag(@user.reservations[1].place.photo, width: 225, height: 225, crop: :fill) %>
+        <%= cl_image_tag(@reservation.place.photo, width: 225, height: 225, crop: :fill) %>
       </div>
       </div>
     <% end %>
@@ -65,16 +68,17 @@
     <div class="col-sm-9 flexbox">
       <div class="col-sm-6">
         <div class="add-padding">
-          <h3>  <%= @user.reservations[2].place.name %></h3>
-            <p><%= @user.reservations[2].place.address%></p>
+          <% @reservation = @user.reservations[2] %>
+          <h3>  <%= @reservation.place.name %></h3>
+            <p><%= @reservation.place.address%></p>
             <br>
-            <p><%= @user.reservations[2].date.day%> - <%= @user.reservations[2].date.month%> -  <%= @user.reservations[2].date.year%></p>
-            <p>for: <%= @user.reservations[2].duration %>h</p>
-            <p class="text-right"><%= link_to "Delete reservation", place_reservation_path(@user.reservations[2].place), method: :delete %></p>
+            <p><%= @reservation.date.day%> - <%= @reservation.date.month%> -  <%= @reservation.date.year%></p>
+            <p>for: <%= @reservation.duration %>h</p>
+            <p class="text-right"><%= link_to "Delete reservation", place_reservation_path(@reservation.place), method: :delete %></p>
         </div>
       </div>
       <div class="col-sm-3">
-        <%= cl_image_tag(@user.reservations[2].place.photo, width: 225, height: 225, crop: :fill) %>
+        <%= cl_image_tag(@reservation.place.photo, width: 225, height: 225, crop: :fill) %>
       </div>
       </div>
     <% end %>

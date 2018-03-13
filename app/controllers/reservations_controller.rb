@@ -16,6 +16,16 @@ class ReservationsController < ApplicationController
   def destroy
   end
 
+  def accept
+    @reservation.status = "Accepted"
+    @reservation.save
+  end
+
+  def decline
+    @reservation.status = "Declined"
+    @reservation.save
+  end
+
   private
 
   def reservation_params
