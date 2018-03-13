@@ -8,6 +8,8 @@ class PlacesController < ApplicationController
   end
 
   def show
+    @reservation = Reservation.new
+    @place = Place.find(params[:id])
   end
 
   def new
