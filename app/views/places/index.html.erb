@@ -11,13 +11,14 @@
   <!-- insert logic behind each filter -->
 </div>
 <div class="main-container">
-  <div class="cards-container">
+  <div class="cards-container container">
     <div class="row">
       <% @places.each do |place| %>
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="card">
             <div class="card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= cl_image_path place.photo, height: 300, width: 400,crop: :fill %>')"> </div>
+         url('<%= cl_image_path place.photo, height: 300, width: 400,crop: :fill %>')">
+            </div>
             <div class="card-content">
               <div class="place-category">
                 <p><%= place.category.upcase %></p>
@@ -38,6 +39,7 @@
     <img src="https://lh4.googleusercontent.com/proxy/ljpzfi_7Cot9t8G-FkOUNNyoUli7c_CgVfvtAzQArzlBNQi7Zh8vuwA7ztHvYwH0lIh5mT-yS9sl8nTSEUwJ8jm4Gg34yDAJGQzyu2bhSaVe8Dc8a0GlJ8q5Kz9-ROAnEP01KBzaZcuFPUgr3OBG5g=s0-d" alt="map-placeholder">
   </div>
 </div>
+
 
 
 
