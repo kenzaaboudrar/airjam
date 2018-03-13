@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  margin: 0px;
+}
+
+.cards-container {
+  padding: 1px;
+}
+
+#map {
+  height: 100vh;
+  max-width: 25%;
+  flex: 0 0 450px;
+  position: sticky !important;
+  top: 0 !important;
+}
+
+.filter-bar {
+  margin-left: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.filter {
+  margin: 3px;
+}
