@@ -1,0 +1,68 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3 profile-card">
+      <%= cl_image_tag(@user.avatar, class:"avatar-very-large", crop: :fill) %>
+      <h4><%= @user.first_name %> <%= @user.last_name %></h4>
+      <% if @user.band_manager %>
+        <i class="fa fa-music"> Band manager</i>
+      <% end %>
+    </div>
+    <% if @user.reservations.length >= 1 %>
+      <div class="col-sm-9 flexbox">
+        <div class="col-sm-6">
+          <h3><%= @user.reservations[0].place.name %></h3>
+          <p><%= @user.reservations[0].place.address%></p>
+          <p>Date:<%= @user.reservations[0].date%> - for: <%= @user.reservations[0].duration %>h</p>
+        </div>
+        <div class="col-sm-3">
+          <%= cl_image_tag(@user.reservations[0].place.photo, width: 225, height: 225, crop: :fill) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3 group-card">
+      <%= cl_image_tag(@user.band_photo, class:"avatar-long", crop: :fill) %>
+      <h4><%= @user.band_name %></h4>
+      <p><span class="text-left">  <i class="fa fa-users"> <%=@user.number_of_musicians%> members</i></span> <span class="text-right"><i class="fa fa-volume-off"> <%=@user.music_type%></i></span></p>
+    </div>
+    <% if @user.reservations.length >= 2 %>
+    <div class="col-sm-9 flexbox">
+      <div class="col-sm-6">
+        <h3><%= @user.reservations[1].place.name %></h3>
+          <p><%= @user.reservations[1].place.address%></p>
+          <p>Date:<%= @user.reservations[1].date%> - for: <%= @user.reservations[1].duration %>h</p>
+      </div>
+      <div class="col-sm-3">
+        <%= cl_image_tag(@user.reservations[1].place.photo, width: 225, height: 225, crop: :fill) %>
+      </div>
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3 places-card">
+      <% @user.places.each_with_index do |place, index| %>
+        <%= link_to place_path(place) do %>
+        <%= cl_image_tag(place.photo, width: 86, height: 110, crop: :fill) if index<=5%>
+        <% end %>
+      <% end %>
+    </div>
+    <% if @user.reservations.length >= 3 %>
+    <div class="col-sm-9 flexbox">
+      <div class="col-sm-6">
+        <h3><%= @user.reservations[2].place.name %></h3>
+          <p><%= @user.reservations[2].place.address%></p>
+          <p>Date:<%= @user.reservations[2].date%> - for: <%= @user.reservations[2].duration %>h</p>
+      </div>
+      <div class="col-sm-3">
+        <%= cl_image_tag(@user.reservations[2].place.photo, width: 225, height: 225, crop: :fill) %>
+      </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
