@@ -9,13 +9,17 @@
 .text-container {
 display: block;
 color: white !important;
- h1 {
-  padding-top: 50px;
-  padding-bottom: 20px;
-  font-size: 64px;
+ // h1 {
+ //  padding-top: 50px;
+ //  padding-bottom: 20px;
+ //  font-size: 64px;
+ // }
+ #white-logo {
+  width: 400px;
+  padding-top: 30px;
  }
  h3 {
-  padding-bottom: 80px;
+  padding-bottom: 50px;
   font-weight: lighter;
  }
  .input-group {
