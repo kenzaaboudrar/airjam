@@ -23,6 +23,9 @@
  display: flex;
  align-items: center;
  padding-top: 20px;
+  p {
+    padding-right: 20px;
+  }
 }
 .description {
 margin-top: 25px;
@@ -32,4 +35,15 @@ margin-top: 25px;
   padding: 20px;
   border: 1px solid $gray;
   border-radius: 1px;
+}
+.price {
+ display: flex;
+ align-items: center;
+ border-bottom: 1px solid $gray;
+ margin-bottom: 20px;
+  p {
+    font-size: 12px;
+    margin: 0px;
+    padding-left: 5px;
+  }
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312164922) do
+ActiveRecord::Schema.define(version: 20180313124216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20180312164922) do
     t.string "name"
     t.integer "stage_capacity"
     t.boolean "equipped"
-    t.text "photo"
+    t.string "photo"
     t.text "description"
     t.integer "price"
     t.string "category"
@@ -58,10 +58,10 @@ ActiveRecord::Schema.define(version: 20180312164922) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
-    t.text "avatar"
+    t.string "avatar"
     t.integer "number_of_musicians"
     t.string "music_type"
-    t.text "band_photo"
+    t.string "band_photo"
     t.text "band_description"
     t.string "band_name"
     t.boolean "band_manager", default: false
