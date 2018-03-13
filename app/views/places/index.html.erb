@@ -1,0 +1,35 @@
+
+
+<div class="container">
+  <div class="filter-bar">
+    <div class="filter btn">City</div>
+    <!-- insert logic behind each filter -->
+    <div class="filter btn">Capacity</div>
+    <!-- insert logic behind each filter -->
+    <div class="filter btn">Equipment</div>
+    <!-- insert logic behind each filter -->
+    <div class="filter btn">Price</div>
+    <!-- insert logic behind each filter -->
+  </div>
+  <div class="cards-container">
+    <div class="row">
+      <% @places.each do |place| %>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="card">
+            <div class="card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path place.photo, height: 300, width: 400,crop: :fill %>')"> </div>
+            <div class="card-content">
+              <p><%= place.category.upcase %></p>
+              <h3><strong><%= link_to place.name, place_path(place) %></strong></h3>
+              <p><em><%= place.price %>$ per hour</em></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div id="map"></div>
+</div>
+
+
+
