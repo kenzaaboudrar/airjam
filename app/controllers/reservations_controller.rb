@@ -5,6 +5,7 @@ class ReservationsController < ApplicationController
     @reservation.place = @place
     @reservation.user = current_user
     @reservation.price = @place.price * @reservation.duration
+    authorize @reservation
     if @reservation.save
       redirect_to place_path(@place)
     else
