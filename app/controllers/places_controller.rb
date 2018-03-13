@@ -15,9 +15,19 @@ class PlacesController < ApplicationController
   end
 
   def new
+    @place = Place.new
+    authorize @place
   end
 
   def create
+    @place = Place.new(place_params)
+    @place.user = current_user
+    authorize @place
+    if @place.save
+      redirect_to place_path(@place)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -25,11 +35,17 @@ class PlacesController < ApplicationController
   end
 
   def update
-    @place = Place.find(place_params)
+    @place = Place.update(place_params)
     authorize @place
-    #if @place.save
+    redirect_to place_path(@place)
   end
 
   def destroy
+  end
+
+  private
+
+  def place_params
+    params.require(:place).permit(:name, :address, :stage_capacity, :price, :photo, :description, :category, :equipped)
   end
 end
