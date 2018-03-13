@@ -32,15 +32,23 @@ class PlacesController < ApplicationController
 
   def edit
     @place = Place.find(params[:id])
+    authorize @place
   end
 
   def update
-    @place = Place.update(place_params)
+    @place = Place.find(params[:id])
     authorize @place
+    @place.update(place_params)
     redirect_to place_path(@place)
   end
 
   def destroy
+    @place = Place.find(params[:id])
+    @user = @place.user
+    authorize @place
+    @place.destroy
+    flash[:alert] = "#{@place.name} has been deleted."
+    redirect_to user_path(@user)
   end
 
   private
