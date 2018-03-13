@@ -17,7 +17,7 @@
               <% if @place.user.avatar.present? %>
                 <%= cl_image_tag @place.user.avatar, class: "avatar-large" %>
               <% else %>
-                <p>Add a photo</p>
+                <p><i class="fas fa-glass-martini"></i></p>
               <% end %>
               <p><%= @place.user.first_name %></p>
             </div>
