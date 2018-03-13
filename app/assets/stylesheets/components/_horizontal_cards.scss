@@ -1,0 +1,56 @@
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding-right: 0;
+  border: 1px solid #ECECEB;
+}
+
+.add-padding {
+  padding: 30px;
+}
+
+.profile-card {
+  padding-top: 30px;
+  background-color: white;
+  border: 1px solid #ECECEB;
+  height: 227px;
+  width: 270px;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.profile-card h3 {
+  margin-top: 10px;
+}
+
+.profile-card i {
+  margin-top: -10px;
+  opacity: 0.2;
+}
+
+.group-card {
+  background-color: white;
+  border: 1px solid #ECECEB;
+  padding: 0px;
+  height: 227px;
+  width: 270px;
+  margin-right: 20px;
+  h4 {
+  margin-top: -100px;
+  color: white;
+  text-align: center;
+  }
+  p {
+  margin-top: 90px;
+  opacity: 0.2;
+  }
+}
+
+.places-card {
+  padding: 0px;
+  height: 227px;
+  width: 270px;
+  margin-right: 20px;
+  background-color: white;
+}

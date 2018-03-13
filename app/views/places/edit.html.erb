@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>Update <strong><%= @place.name  %></strong></h1>
+      <%= simple_form_for @place do |f| %>
+        <%= f.input :name %>
+        <%= f.input :address %>
+        <%= f.input :category %>
+        <%= f.input :stage_capacity %>
+        <%= f.label :equipped %>
+        <%= f.check_box :equipped %>
+        <%= f.input :description %>
+        <%= f.input :price %>
+        <%= f.input :photo %>
+        <%= f.input :photo_cache, as: :hidden %>
+        <%= f.submit "Update #{@place.name}", class: "btn btn-danger btn-full-width" %>
+      <% end %>
+  </div>
+</div>
