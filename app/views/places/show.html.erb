@@ -38,17 +38,33 @@
     </div>
 
     <div class="col-md-4">
-      <div class="reservation">
-        <div class="price">
-          <h4><strong><%= @place.price %>€</strong></h4>
-          <p>per hour</p>
-        </div>
-        <%= simple_form_for [@place, @reservation] do |f| %>
-          <%= f.input :date %>
-          <%= f.input :duration %>
-          <%= f.submit "Book this place", class: "btn btn-danger btn-full-width" %>
+      <% if @place.user == current_user %>
+        <h3>Reservations</h3>
+        <% @place.reservations.order(:date).each do |reservation| %>
+          <div class="reservation">
+            <div class="reservation-request">
+              <p><%= reservation.status.upcase %></p>
+              <h4><strong><%= reservation.price %>€</strong></h4>
+            </div>
+            <div class="time">
+              <h4><strong><%= reservation.date %></strong></h4>
+              <p>Duration: <%= reservation.duration %>h</p>
+            </div>
+          </div>
         <% end %>
-      </div>
+      <% else %>
+        <div class="reservation">
+          <div class="price">
+            <h4><strong><%= @place.price %>€</strong></h4>
+            <p>per hour</p>
+          </div>
+          <%= simple_form_for [@place, @reservation] do |f| %>
+            <%= f.input :date %>
+            <%= f.input :duration %>
+            <%= f.submit "Book this place", class: "btn btn-danger btn-full-width" %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
