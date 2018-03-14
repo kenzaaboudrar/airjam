@@ -15,3 +15,4 @@ Rails.application.routes.draw do
       patch :decline
     end
   end
+end

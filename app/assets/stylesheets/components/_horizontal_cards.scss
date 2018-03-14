@@ -59,10 +59,18 @@
   margin-right: 20px;
   background-color: white;
   text-color: rgba(0, 0, 0, 0);
+  box-shadow: 1px 1px 2px #e7e7e7;
 }
 
-.places-card:hover {
-  text-color: rgba(0, 0, 0, 1);
+.places-card-photo {
+  padding: 0px;
+  height: 180px;
+}
+
+.places-card-content {
+  position: relative;
+  padding: 0px;
+  height: 85px;
 }
 
 .accepted {

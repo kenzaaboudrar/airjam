@@ -1,3 +1,4 @@
+<!-- créer un user qui a des photos de placeholders -->
 <% if User.where(email: "basic@user.com") == [] %>
 <% @basic_user = User.new %>
 <% @basic_user.email = "basic@user.com" %>
@@ -9,7 +10,8 @@
 <% @basic_user = User.where(email: "basic@user.com")[0] %>
 <% end %>
 
-<% if @user.reservations.length > 0 && @user.places.length > 0 || @user.reservations.length = 0 && @user.places.length = 0%>
+<!-- Cas 1: un user a à la fois des places et un groupe OU ni l'un ni l'autre -->
+<% if @user.reservations.length > 0 && @user.places.length > 0 || @user.reservations.length == 0 && @user.places.length == 0%>
   <br>
   <div class="container">
     <div class="row">
@@ -127,8 +129,8 @@
   </div>
 <% end %>
 
-
-<% if @user.reservations.length > 0 && @user.places.length = 0 %>
+<!-- Cas 2: un user qui est groupe manager mais n'a pas de bar -->
+<% if @user.reservations.length > 0 && @user.places.length == 0 %>
   <br>
   <div class="container">
     <div class="row">
@@ -193,6 +195,139 @@
               <p>for: <%= @reservation.duration %>h</p>
               <% if @reservation.status == "pending" %>
                 <p class="pending"><%= @reservation.status %></p>
+              <% elsif @reservation.status == "accepted" %>
+                <p class="accepted"><%= @reservation.status %></p>
+              <% else %>
+                <p class="declined"><%= @reservation.status %></p>
+              <% end %>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <%= cl_image_tag(@reservation.place.photo, width: 225, height: 225, crop: :fill) %>
+        </div>
+        </div>
+      <% end %>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3">
+<!-- Mettre la carte du dernier resto reservé -->
+<!-- PROBLEME DE DECALAGE A REGLER -->
+        <div class="places-card">
+          <div class="places-card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path @user.reservations[-1].place.photo, height: 300, width: 400,crop: :fill %>')">
+          </div>
+          <div class="places-card-content">
+            <div class="place-category">
+              <p><%= @user.reservations[-1].place.category.upcase %></p>
+            </div>
+            <div class="place-name">
+              <h3><%= link_to @user.reservations[-1].place.name, place_path(@user.reservations[-1].place) %></h3>
+            </div>
+            <div class="place-price">
+                <p><em><%= @user.reservations[-1].place.price %>€ per hour</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- fin de la carte -->
+      </div>
+      <% if @user.reservations.length >= 3 %>
+      <div class="col-sm-9 flexbox">
+        <div class="col-sm-6">
+          <div class="add-padding">
+            <% @reservation = @user.reservations[2] %>
+            <h3>  <%= @reservation.place.name %></h3>
+              <p><%= @reservation.place.address%></p>
+              <br>
+              <p><%= @reservation.date.day%> - <%= @reservation.date.month%> -  <%= @reservation.date.year%></p>
+              <p>for: <%= @reservation.duration %>h</p>
+              <% if @reservation.status == "pending" %>
+                <p class="pending"><%= @reservation.status %></p>
+              <% elsif @reservation.status == "accepted" %>
+                <p class="accepted"><%= @reservation.status %></p>
+              <% else %>
+                <p class="declined"><%= @reservation.status %></p>
+              <% end %>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <%= cl_image_tag(@reservation.place.photo, width: 225, height: 225, crop: :fill) %>
+        </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<!-- Cas 3: un user possède des places mais pas de groupes -->
+<% if @user.reservations.length == 0 && @user.places.length > 0 %>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 profile-card">
+        <% if @user.avatar.present? %>
+          <%= cl_image_tag(@user.avatar, class:"avatar-very-large", crop: :fill) %>
+          <h4><%= @user.first_name %> <%= @user.last_name %></h4>
+        <% else %>
+          <%= cl_image_tag(@basic_user.avatar, class:"avatar-very-large", crop: :fill) %>
+          <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
+          <% if @user.band_manager %>
+            <i class="fa fa-music"> Band manager</i>
+          <% end %>
+        <% end %>
+      </div>
+      <% if @user.places.length >= 1 %>
+        <div class="col-sm-9 flexbox">
+          <div class="col-sm-6">
+            <div class="add-padding">
+              <% @reservation = @user.places.reservations[0]%>
+              <h3>  <%= @reservation.place.name %></h3>
+              <p><%= @reservation.place.address%></p>
+              <br>
+              <p><%= @reservation.date.day%> - <%= @reservation.date.month%> -  <%= @reservation.date.year%></p>
+              <p>for: <%= @reservation.duration %>h</p>
+              <% if @reservation.status == "pending" && @reservation.place.user == @reservation.user %>
+                <button><%= link_to "Accept", accept_reservation_path(@reservation), method: :patch %></button>
+                <button><%= link_to "Decline", decline_reservation_path(@reservation), method: :patch %></button>
+              <% elsif @reservation.status == "Accepted" %>
+                <p class="accepted"><%= @reservation.status %></p>
+              <% else %>
+                <p class="declined"><%= @reservation.status %></p>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <%= cl_image_tag(@reservation.place.photo, width: 225, height: 225, crop: :fill) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3 group-card">
+        <% if @user.band_photo.present? %>
+          <%= cl_image_tag(@user.band_photo, :height => 225, :width => 268, crop: :fill) %>
+          <h4><%= @user.band_name %></h4>
+          <p><span class="text-left">  <i class="fa fa-users"> <%=@user.number_of_musicians%> members</i></span> <span class="text-right"><i class="fa fa-volume-off"> <%=@user.music_type%></i></span></p>
+        <% else %>
+          <%= cl_image_tag(@basic_user.band_photo, class:"avatar-long", crop: :fill) %>
+          <h4><%= link_to "Tell us about your band", edit_user_path(@user) %></h4>
+        <% end %>
+      </div>
+      <% if @user.reservations.length >= 2 %>
+      <div class="col-sm-9 flexbox">
+        <div class="col-sm-6">
+          <div class="add-padding">
+            <% @reservation = @user.reservations[1]%>
+            <h3>  <%= @reservation.place.name %></h3>
+              <p><%= @reservation.place.address%></p>
+              <br>
+              <p><%= @reservation.date.day%> - <%= @reservation.date.month%> -  <%= @reservation.date.year%></p>
+              <p>for: <%= @reservation.duration %>h</p>
+              <% if @reservation.status == "pending" && @reservation.place.user == @reservation.user%>
+                <button><%= link_to "Accept", accept_reservation_path(@reservation), method: :patch %></button>
+                <button><%= link_to "Decline", decline_reservation_path(@reservation), method: :patch %></button>
               <% elsif @reservation.status == "accepted" %>
                 <p class="accepted"><%= @reservation.status %></p>
               <% else %>
