@@ -7,22 +7,28 @@ class ReservationsController < ApplicationController
     @reservation.price = @place.price * @reservation.duration
     authorize @reservation
     if @reservation.save
-      redirect_to place_path(@place)
+      raise
+      redirect_to user_path(@reservation.user)
     else
       render "places/show"
+      flash[:alert] = "Reservation request failed."
     end
   end
 
   def accept
     @reservation = Reservation.find(params[:id])
     @reservation.status = "Accepted"
-    @reservation.save
     authorize @reservation
+    @reservation.save
+    redirect_to user_path
   end
 
   def decline
+    @reservation = Reservation.find(params[:id])
+    authorize @reservation
     @reservation.status = "Declined"
     @reservation.save
+    redirect_to user_path
   end
 
   private
