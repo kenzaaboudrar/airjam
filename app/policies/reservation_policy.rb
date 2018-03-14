@@ -8,4 +8,8 @@ class ReservationPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def accept?
+    true
+  end
 end

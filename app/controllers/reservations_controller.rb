@@ -13,7 +13,16 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def destroy
+  def accept
+    @reservation = Reservation.find(params[:id])
+    @reservation.status = "Accepted"
+    @reservation.save
+    authorize @reservation
+  end
+
+  def decline
+    @reservation.status = "Declined"
+    @reservation.save
   end
 
   private

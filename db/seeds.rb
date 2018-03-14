@@ -13,6 +13,7 @@ puts "Creating 20 places"
    category: ["Blues Bar", "Buena Vista", "Macarena", "Jazz", "American Rock", "Indie"].sample,
    price: rand(20..400)
  )
+ place.save
 end
 
 # This file should contain all the record creation needed to seed the database with its default values.
