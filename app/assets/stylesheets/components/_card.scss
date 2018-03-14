@@ -18,11 +18,16 @@
   margin-bottom: 30px;
 }
 
+.card-avatar {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
 .card {
   background: white;
   border-radius: 3px;
-  margin: 0px 5px;
-  margin-bottom: 8px;
+  margin: 20px 5px;
   box-shadow: 1px 1px 2px #e7e7e7;
 }
 
@@ -30,17 +35,18 @@
   padding: 15px;
   height: 250px;
   border-radius: 3px;
+  background-size: cover;
 }
 
 .card-content {
   position: relative;
   padding: 10px;
-  height: 85px;
+  height: 100px;
 }
 
 .place-category {
   position: absolute;
-  bottom: 62px;
+  bottom: 70px;
   right: 10px;
   p {
     padding-bottom: 0px;
@@ -59,9 +65,9 @@
   padding: 0px;
   font-weight: bold;
   h3 {
-    margin-bottom: 5px;
-    line-height: 11px;
+    margin-bottom: 3px;
     font-weight: bold;
+    line-height: 0.5;
   }
   a {
     font-size: 16px;
