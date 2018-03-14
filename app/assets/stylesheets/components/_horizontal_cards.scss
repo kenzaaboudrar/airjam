@@ -58,4 +58,17 @@
   width: 270px;
   margin-right: 20px;
   background-color: white;
+  text-color: rgba(0, 0, 0, 0);
+}
+
+.places-card:hover {
+  text-color: rgba(0, 0, 0, 1);
+}
+
+.accepted {
+  color: green;
+}
+
+.declined {
+  color: red;
 }
