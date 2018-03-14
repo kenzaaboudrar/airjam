@@ -11,7 +11,7 @@
 <% end %>
 
 <!-- Cas 1: un user a à la fois des places et un groupe OU ni l'un ni l'autre -->
-<% if @user.reservations.length > 0 && @user.places.length > 0 || @user.reservations.length == 0 && @user.places.length == 0%>
+<% if @user.reservations_as_owner.length > 0 && @user.places.length > 0 || @user.reservations_as_owner.length == 0 && @user.places.length == 0%>
   <br>
   <div class="container">
     <div class="row">
@@ -27,11 +27,11 @@
           <% end %>
         <% end %>
       </div>
-      <% if @user.reservations.length >= 1 %>
+      <% if @user.reservations_as_owner.length >= 1 %>
         <div class="col-sm-9 flexbox">
           <div class="col-sm-6">
             <div class="add-padding">
-              <% @reservation = @user.reservations[0]%>
+              <% @reservation = @user.reservations_as_owner[0]%>
               <h3>  <%= @reservation.place.name %></h3>
               <p><%= @reservation.place.address%></p>
               <br>
@@ -65,7 +65,7 @@
           <h4><%= link_to "Tell us about your band", edit_user_path(@user) %></h4>
         <% end %>
       </div>
-      <% if @user.reservations.length >= 2 %>
+      <% if @user.reservations_as_owner.length >= 2 %>
       <div class="col-sm-9 flexbox">
         <div class="col-sm-6">
           <div class="add-padding">
@@ -100,7 +100,7 @@
           <% end %>
         <% end %>
       </div>
-      <% if @user.reservations.length >= 3 %>
+      <% if @user.reservations_as_owner.length >= 3 %>
       <div class="col-sm-9 flexbox">
         <div class="col-sm-6">
           <div class="add-padding">
@@ -130,7 +130,7 @@
 <% end %>
 
 <!-- Cas 2: un user qui est groupe manager mais n'a pas de bar -->
-<% if @user.reservations.length > 0 && @user.places.length == 0 %>
+<% if @user.reservations_as_owner.length > 0 && @user.places.length == 0 %>
   <br>
   <div class="container">
     <div class="row">
@@ -261,7 +261,7 @@
 <% end %>
 
 <!-- Cas 3: un user possède des places mais pas de groupes -->
-<% if @user.reservations.length == 0 && @user.places.length > 0 %>
+<% if @user.reservations_as_owner.length == 0 && @user.places.length > 0 %>
   <br>
   <div class="container">
     <div class="row">
@@ -281,7 +281,8 @@
         <div class="col-sm-9 flexbox">
           <div class="col-sm-6">
             <div class="add-padding">
-              <% @reservation = @user.places.reservations[0]%>
+              <% @place = @user.places.first%>
+              <% @reservation = @place.reservations[0]%>
               <h3>  <%= @reservation.place.name %></h3>
               <p><%= @reservation.place.address%></p>
               <br>

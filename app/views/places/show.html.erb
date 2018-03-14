@@ -17,7 +17,7 @@
               <% if @place.user.avatar.present? %>
                 <%= cl_image_tag @place.user.avatar, class: "avatar-large" %>
               <% else %>
-                <p><i class="fas fa-glass-martini"></i></p>
+                <p><img class="avatar-large" src="http://www.clker.com/cliparts/m/3/I/C/c/2/grey-silhouette-of-man-hi.png" alt="silhouette"></p>
               <% end %>
               <p><%= @place.user.first_name %></p>
             </div>
@@ -39,7 +39,7 @@
 
     <div class="col-md-4">
       <% if @place.user == current_user %>
-        <h3>Reservations</h3>
+        <h3>Book now</h3>
         <% @place.reservations.order(:date).each do |reservation| %>
           <div class="reservation">
             <div class="reservation-request">
@@ -48,7 +48,7 @@
             </div>
             <div class="time">
               <h4><strong><%= reservation.date %></strong></h4>
-              <p>Duration: <%= reservation.duration %>h</p>
+              <p>Duration (in hours): <%= reservation.duration %>h</p>
             </div>
           </div>
         <% end %>
@@ -61,7 +61,7 @@
           <%= simple_form_for [@place, @reservation] do |f| %>
             <%= f.input :date %>
             <%= f.input :duration %>
-            <%= f.submit "Book this place", class: "btn btn-danger btn-full-width" %>
+            <%= f.submit "Make a booking request", class: "btn btn-danger btn-full-width" %>
           <% end %>
         </div>
       <% end %>
