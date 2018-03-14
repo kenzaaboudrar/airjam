@@ -1,5 +1,5 @@
   <div class="card">
-    <%= image_tag current_user.avatar, class: "avatar card-avatar"%>
+    <%= cl_image_tag place.user.avatar, class: "avatar card-avatar"%>
     <div class="card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path place.photo, height: 300, width: 400,crop: :fill %>')"> </div>
     <div class="card-content">
       <div class="place-category">
