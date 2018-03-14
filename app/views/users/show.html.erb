@@ -283,12 +283,13 @@
             <div class="add-padding">
               <% @place = @user.places.first%>
               <% @reservation = @place.reservations[0]%>
-              <h3>  <%= @reservation.place.name %></h3>
-              <p><%= @reservation.place.address%></p>
+              <% raise %>
+              <h3>  <%= @place.name %></h3>
+              <p><%= @place.address %></p>
               <br>
-              <p><%= @reservation.date.day%> - <%= @reservation.date.month%> -  <%= @reservation.date.year%></p>
+              <p><%= @reservation.date.day %> - <%= @reservation.date.month %> -  <%= @reservation.date.year %></p>
               <p>for: <%= @reservation.duration %>h</p>
-              <% if @reservation.status == "pending" && @reservation.place.user == @reservation.user %>
+              <% if @reservation.status == "pending" && @place.user == @reservation.user %>
                 <button><%= link_to "Accept", accept_reservation_path(@reservation), method: :patch %></button>
                 <button><%= link_to "Decline", decline_reservation_path(@reservation), method: :patch %></button>
               <% elsif @reservation.status == "Accepted" %>
