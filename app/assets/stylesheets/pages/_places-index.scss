@@ -16,7 +16,8 @@
 
 #map {
   height: 100vh;
-  max-width: 35%;
+  max-width: 45%;
+
   flex: 0 0 450px;
   position: sticky !important;
   top: 0 !important;
@@ -30,4 +31,11 @@
 
 .filter {
   margin: 3px;
+}
+
+.marker-window {
+  width: 250px;
+  .card {
+    margin: 0px;
+  }
 }
