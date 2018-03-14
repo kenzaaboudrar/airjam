@@ -13,12 +13,12 @@ color: white !important;
  h1 {
   padding-top: 50px;
   padding-bottom: 20px;
-  font-size: 80px;
+  font-size: 64px;
 
  }
  h3 {
   padding-bottom: 50px;
-  font-weight: lighter;
+  font-weight: 300;
  }
  .input-group {
   margin: auto;
@@ -29,5 +29,10 @@ color: white !important;
  #text-link {
   color: white !important;
  }
+}
+
+.sub-title {
+  margin-top: 50px;
+  margin-bottom: 40px;
 }
 

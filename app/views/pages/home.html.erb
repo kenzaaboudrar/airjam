@@ -2,8 +2,8 @@
   <div class="home-banner" style="background-image: linear-gradient(-225deg, rgba(20, 20, 20, 0.4) 0%, rgba(20, 20, 20, 0.4) 50%), url('https://images.pexels.com/photos/534258/pexels-photo-534258.jpeg?w=940&h=650&auto=compress&cs=tinysrgb')">
     <div class="container">
         <div class="text-container">
-<!--         <h1 class="text-center">Airjam</h1> -->
-        <div class="text-center"><%= link_to image_tag "white-logo.png", id: "white-logo" %></div>
+        <h1 class="text-center">Airjam</h1>
+<!--         <div class="text-center"> link_to image_tag "white-logo.png", id: "white-logo" </div> -->
         <h3 class="text-center">Find bars where to play everywhere.</h3>
         <div>
           <div class="input-group">
@@ -16,5 +16,36 @@
       </div>
     </div>
   </div>
+
+  <h3 class="text-center sub-title">Some good places to play</h3>
+
+<% places = Place.all %>
+<div class="container">
+<div class="main-container">
+  <div class="cards-container">
+    <div class="row">
+      <% places.sample(3).each do |place| %>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="card">
+              <div class="card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path place.photo, height: 300, width: 400,crop: :fill %>')"> </div>
+              <div class="card-content">
+                <div class="place-category">
+                  <p><%= place.category.upcase %></p>
+                </div>
+                <div class="place-name">
+                  <h3><%= link_to place.name, place_path(place) %></h3>
+                </div>
+                <div class="place-price">
+                   <p><em><%= place.price %>€ per hour</em></p>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+
 
 
