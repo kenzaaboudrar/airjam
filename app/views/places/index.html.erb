@@ -35,11 +35,7 @@
       <% end %>
     </div>
   </div>
-  <div id="map">
-    <img src="https://lh4.googleusercontent.com/proxy/ljpzfi_7Cot9t8G-FkOUNNyoUli7c_CgVfvtAzQArzlBNQi7Zh8vuwA7ztHvYwH0lIh5mT-yS9sl8nTSEUwJ8jm4Gg34yDAJGQzyu2bhSaVe8Dc8a0GlJ8q5Kz9-ROAnEP01KBzaZcuFPUgr3OBG5g=s0-d" alt="map-placeholder">
-  </div>
+  <div id="map" data-markers="<%= @markers.to_json %>"></div>
 </div>
-
-
-
-
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
+<%= javascript_pack_tag "map" %>
