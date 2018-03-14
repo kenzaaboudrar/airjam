@@ -3,11 +3,6 @@
   margin: 0px;
 }
 
-.btn {
-  border: 1px solid rgba(0,0,0,0.4);
-  color: rgba(0,0,0,0.4);
-}
-
 .cards-container {
   padding: 1px;
   margin-left: 20px;
@@ -17,7 +12,6 @@
 #map {
   height: 100vh;
   max-width: 45%;
-
   flex: 0 0 450px;
   position: sticky !important;
   top: 0 !important;
