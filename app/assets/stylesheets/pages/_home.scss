@@ -9,14 +9,12 @@
 .text-container {
 display: block;
 color: white !important;
- // h1 {
- //  padding-top: 50px;
- //  padding-bottom: 20px;
- //  font-size: 64px;
- // }
- #white-logo {
-  width: 400px;
-  padding-top: 30px;
+
+ h1 {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  font-size: 80px;
+
  }
  h3 {
   padding-bottom: 50px;
@@ -24,6 +22,9 @@ color: white !important;
  }
  .input-group {
   margin: auto;
+ }
+ .btn {
+  border: 1px solid $yellow;
  }
  #text-link {
   color: white !important;
