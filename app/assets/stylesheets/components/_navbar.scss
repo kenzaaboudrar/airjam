@@ -19,10 +19,10 @@
   margin-right: 40px;
 }
 .btn {
-  border: 1px solid $red;
+  border: 1px solid $yellow;
 }
 #text-link {
-  color: $red !important;
+  color: $yellow !important;
 }
 
 /* User Avatar */
@@ -51,7 +51,7 @@
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: $yellow;
   text-decoration: none;
 }
 
