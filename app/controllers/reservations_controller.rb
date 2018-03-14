@@ -13,9 +13,6 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
   def accept
     @reservation = Reservation.find(params[:id])
     @reservation.status = "Accepted"

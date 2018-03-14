@@ -9,11 +9,9 @@ Rails.application.routes.draw do
   resources :places do
     resources :reservations, only: [ :create ]
   end
-
-  resources :reservations, only: [:destroy] do
+  resources :reservations, only: [] do
     member do
       patch :accept
       patch :decline
     end
   end
-end
