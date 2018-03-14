@@ -18,33 +18,41 @@
   margin-bottom: 30px;
 }
 
+.card-avatar {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
 .card {
   background: white;
-  border-radius: 4px;
-  margin: 0px 5px;
-  margin-bottom: 8px;
+  border-radius: 3px;
+  margin: 20px 5px;
   box-shadow: 1px 1px 2px #e7e7e7;
 }
 
 .card-photo {
   padding: 15px;
-  height: 180px;
+  height: 250px;
+  border-radius: 3px;
+  background-size: cover;
 }
 
 .card-content {
   position: relative;
-  padding: 5px;
-  height: 85px;
+  padding: 10px;
+  height: 100px;
 }
 
 .place-category {
   position: absolute;
-  bottom: 67px;
-  left: 5px;
+  bottom: 70px;
+  left: 10px;
   p {
     padding-bottom: 0px;
     margin-bottom: 0px;
-    font-size: 12px;
+    font-size: 16px;
+    font-weight: 300;
   }
 }
 
@@ -53,17 +61,18 @@
   bottom: 23px;
   left: 5px;
   vertical-align: middle;
-  margin: 0px;
+  margin: 5px;
   padding: 0px;
   font-weight: bold;
   h3 {
-    margin: 0px;
-    line-height: 11px;
+    margin-bottom: 3px;
     font-weight: bold;
+    line-height: 0.5;
   }
   a {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: lighter;
+    color: $yellow;
   }
   a:hover {
     text-decoration: none !important;
@@ -75,6 +84,7 @@
   position: absolute;
   bottom: 2px;
   left: 5px;
+  margin: 5px;
   p {
     padding-bottom: 0px;
     margin-bottom: 0px;
