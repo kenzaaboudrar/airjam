@@ -2,10 +2,15 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    # @places = Place.all
-    @places = policy_scope(Place).order(created_at: :desc)
-    # @places = []
-    # Place.all.each { |place| @places << place if place.address.include?(params[:search_string]) || place.name.include?(params[:search_string]) || place.description.include?(params[:search_string]) }
+    @places = policy_scope(Place).order(created_at: :desc).where.not(latitude: nil, longitude: nil)
+
+    @markers = @places.map do |place|
+      {
+        lat: place.latitude,
+        lng: place.longitude,
+        infoWindow: { content: render_to_string(partial: "/places/map_box", locals: { place: place }) }
+      }
+    end
   end
 
   def show
