@@ -7,7 +7,6 @@ class ReservationsController < ApplicationController
     @reservation.price = @place.price * @reservation.duration
     authorize @reservation
     if @reservation.save
-      raise
       redirect_to user_path(@reservation.user)
     else
       render "places/show"
