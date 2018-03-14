@@ -6,7 +6,7 @@
         <p><%= place.category.upcase %></p>
       </div>
       <div class="place-name">
-        <h3><%= link_to place.name, place_path(place) %></h3>
+        <h3><%= link_to place.name, place_path(place), target: "blank" %></h3>
       </div>
       <div class="place-price">
         <p><em><%= place.price %>€ per hour</em></p>
