@@ -12,4 +12,8 @@ class ReservationPolicy < ApplicationPolicy
   def accept?
     true
   end
+
+  def decline?
+    true
+  end
 end

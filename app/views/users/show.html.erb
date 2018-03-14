@@ -1,5 +1,5 @@
 <!-- Cas 1: un user est place owner OU ni l'un ni l'autre -->
-<% if @user.band_manager == false || @user.reservations_as_owner.length == 0 && @user.places.length == 0%>
+<% if @user.band_manager == false %>
   <br>
   <div class="container">
     <div class="row">
@@ -17,7 +17,7 @@
           <% end %>
         </div>
       </div>
-      <% if @user.reservations_as_owner.length >= 1 %>
+      <% if @user.places.length >= 1 %>
         <div class="col-sm-9 flexbox">
           <div class="col-sm-6">
             <div class="add-padding">
@@ -47,7 +47,7 @@
           <%= cl_image_tag("http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder2.png", class: "avatar-long", crop: :fill) %>
           <h4><%= link_to "Add a place", new_place_path %></h4>
       </div>
-      <% if @user.reservations_as_owner.length >= 1 %>
+      <% if @user.places.length >= 2 %>
         <div class="col-sm-9 flexbox">
           <div class="col-sm-6">
             <div class="add-padding">
@@ -77,11 +77,11 @@
           <%= cl_image_tag("http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder2.png", class: "avatar-long", crop: :fill) %>
           <h4><%= link_to "Add a place", new_place_path %></h4>
       </div>
-      <% if @user.reservations_as_owner.length >= 1 %>
+      <% if @user.places.length >= 3 %>
         <div class="col-sm-9 flexbox">
           <div class="col-sm-6">
             <div class="add-padding">
-              <% @place = @user.places[3]%>
+              <% @place = @user.places[2]%>
               <h3>  <%= @place.name %></h3>
               <p><%= @place.address%></p>
               <p><%= @place.price %></p>
@@ -105,7 +105,7 @@
   </div>
 
 <!-- Cas 2: un user est group manager -->
-<% elsif @user.band_manager == true && @user.places.length == 0 %>
+<% elsif @user.band_manager == true %>
   <br>
   <div class="container">
     <div class="row">
