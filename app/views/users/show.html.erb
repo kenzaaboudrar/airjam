@@ -1,9 +1,8 @@
 <div class="container">
-  <div class="main-container">
+  <div class="dashboard-container">
 
     <div class="profil">
-      <div class="profil-photo">
-        <div class="profile-card">
+      <div class="profil-pic">
           <% if @user.avatar.present? %>
             <%= cl_image_tag(@user.avatar, class:"avatar-very-large", crop: :fill) %>
             <p><%= @user.first_name %> <%= @user.last_name %></p>
@@ -11,20 +10,33 @@
             <%= cl_image_tag("http://www.castlehearing.co.uk/wp-content/uploads/2016/03/profile-placeholder.jpg", class:"avatar-very-large", crop: :fill) %>
             <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
           <% end %>
-        </div>
       </div>
       <div class="profil-places">
+        <% places = @user.places %>
+        <% places.each do |place| %>
+          <div class="mini-card">
+            <div class="mini-card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path place.photo, height: 150, width: 200,crop: :fill %>')"> </div>
+            <div class="mini-card-content">
+              <div class="mini-place-name">
+                <h3><%= link_to place.name, place_path(place), target: "blank" %></h3>
+              </div>
+              <div class="mini-place-price">
+                <p><em><%= place.price %>€ per hour</em></p>
+              </div>
+          </div>
+        </div>
+        <% end %>
       </div>
     </div>
 
-    <div class="today-reservations">
-      <h3>Today reservations:</h3>
+    <div class="pending-reservations reservations">
+      <h4>Pending reservations:</h4>
     </div>
-    <div class="pending-reservations">
-      <h3>Pending reservations:</h3>
+    <div class="today-reservations reservations">
+      <h4>Today reservations:</h4>
     </div>
-    <div class="reservations">
-      <h3>All my reservations:</h3>
+    <div class="all-reservations reservations">
+      <h4>All my reservations:</h4>
     </div>
   </div>
 </div>
