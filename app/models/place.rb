@@ -12,4 +12,13 @@ class Place < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  def average_rating
+    @ratings = self.reviews.map {|review| review.rating}
+    if @ratings.length > 0
+      @average_rating = @ratings.reduce(:+)/(@ratings.length)
+    else
+      0
+    end
+  end
 end
