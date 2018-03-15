@@ -12,11 +12,12 @@
 
       <div class="input-group <%= "hidden" if params[:action] == "home" %>">
         <div class="input-group">
-          <%= form_tag places_path, method: :get do %>
+          <%= form_tag places_path, class: "flexbox",method: :get do %>
             <%= text_field_tag :query,
               params[:query],
               class: "form-control",
               placeholder: "e.g. Paris, 75010, jazz, ..." %>
+            <%= submit_tag :Search, class: "btn btn-info"  %>
           <% end %>
         </div>
       </div>

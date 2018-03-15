@@ -18,6 +18,14 @@ class PlacesController < ApplicationController
     end
   end
 
+  def filter_by_price
+    @places = index
+    # if clicks on price range
+    # show only places where price_range.includes? place.price
+    # attach to event listener "click"
+
+  end
+
   def show
     @reservation = Reservation.new
     @place = Place.find(params[:id])
