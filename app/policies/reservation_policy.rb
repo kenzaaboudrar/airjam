@@ -10,10 +10,10 @@ class ReservationPolicy < ApplicationPolicy
   end
 
   def accept?
-    true
+    record.place.user == user
   end
 
   def decline?
-    true
+    record.place.user == user
   end
 end
