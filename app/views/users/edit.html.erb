@@ -5,14 +5,14 @@
       <%= simple_form_for @user do |f| %>
         <%= f.input :first_name %>
         <%= f.input :last_name %>
-        <%= f.input :avatar %>
-        <%= f.input :avatar, as: :hidden %>
+        <%= f.input :remote_band_photo_url %>
+        <%= f.input :remote_band_photo_url, as: :hidden %>
         <%= f.collection_check_boxes :band_manager, [[true, 'Band Manager'] ,[false, 'Place owner']], :first, :last %>
         <%= f.input :band_name %>
         <%= f.input :number_of_musicians %>
         <%= f.input :music_type %>
         <%= f.input :band_description %>
-        <%= f.input :band_photo %>
+        <%= f.input :remote_band_photo_url %>
         <%= f.input :band_photo, as: :hidden %>
         <%= f.submit "Edit profile", class: "btn btn-danger btn-full-width" %>
       <% end %>
