@@ -1,13 +1,22 @@
 <div class="filter-bar">
-  <div class="filter btn">City</div>
-  <!-- insert logic behind each filter -->
-  <div class="filter btn">Capacity</div>
-  <!-- insert logic behind each filter -->
-  <div class="filter btn">Equipment</div>
-  <!-- insert logic behind each filter -->
-  <div class="filter btn">Price</div>
-  <!-- insert logic behind each filter -->
-</div>
+
+  <!--<div class="dropdown">
+    <button class="dropdown-toggle filter btn">Dropdown</button>
+    <div class="dropdown-content">
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <li><a href="#" id="filter50" class="navbar-wagon-item navbar-wagon-link"> < 50 €</a></li>
+        <li><a href="#" id="filter50-200" class="navbar-wagon-item navbar-wagon-link"> 50-200 €</a></li>
+        <li><a href="#" id="filter200+" class="navbar-wagon-item navbar-wagon-link"> > 200 €</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+id: "navbar-wagon-menu" -->
+
+
+
+
 <div class="main-container">
   <div class="cards-container container">
     <div class="row">
@@ -15,8 +24,11 @@
         <div class="default-message">No results for your search.</div>
       <% else %>
         <% @places.each do |place| %>
-          <div class="col-xs-12 col-sm-6">
+          <div id="unfiltered-result" class="col-xs-12 col-sm-6">
             <%= render 'shared/card', place: place %>
+          </div>
+          <div id="filtered-result" class="col-xs-12 col-sm-6">
+            <%= render 'shared/card', place: place if place.price  %>
           </div>
         <% end %>
       <% end %>
@@ -24,4 +36,5 @@
   </div>
   <div id="map" data-markers="<%= @markers.to_json %>"></div>
 </div>
+
 
