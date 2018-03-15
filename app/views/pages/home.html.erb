@@ -4,13 +4,17 @@
         <div class="text-container">
         <h1 class="text-center">Airjam</h1>
 <!--         <div class="text-center"> link_to image_tag "white-logo.png", id: "white-logo" </div> -->
-        <h3 class="text-center">Find bars where to play everywhere.</h3>
+        <h3 class="text-center">Find open mics, bars and other venues for you and your band.</h3>
         <div>
           <div class="input-group">
-           <input type="text" class="form-control" placeholder="Try 'Paris'">
-           <span class="input-group-btn">
-             <button class="btn btn-info" type="button"><%= link_to "Search", places_path, id: "text-link" %></button>
-           </span>
+            <%= form_tag places_path, method: :get do %>
+              <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: "e.g. Paris, 75010, jazz, ..."
+              %>
+            <% end %>
+            <!--  <button class="btn btn-info" type="button"><%= link_to"Search", places_path, id: "text-link" %></button> -->
           </div>
         </div>
       </div>

@@ -21,4 +21,12 @@ class Place < ApplicationRecord
       0
     end
   end
+
+  include PgSearch
+  pg_search_scope :search_by_name_address_category_and_description,
+  against: [ :name, :address, :category, :description ],
+  using: {
+    tsearch: { prefix: true }
+  }
+  
 end
