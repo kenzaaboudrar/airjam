@@ -14,12 +14,16 @@
               <p><%= @place.address %></p>
             </div>
             <div class="user text-center">
-              <% if @place.user.avatar.present? %>
-                <%= cl_image_tag @place.user.avatar, class: "avatar-large" %>
+              <% if @place.user == current_user %>
+                <%= link_to "Edit", edit_place_path(@place), class: "btn btn-info" %>
               <% else %>
-                <p><img class="avatar-large" src="http://www.clker.com/cliparts/m/3/I/C/c/2/grey-silhouette-of-man-hi.png" alt="silhouette"></p>
+                <% if @place.user.avatar.present? %>
+                  <%= cl_image_tag @place.user.avatar, class: "avatar-large" %>
+                <% else %>
+                  <p><img class="avatar-large" src="http://www.clker.com/cliparts/m/3/I/C/c/2/grey-silhouette-of-man-hi.png" alt="silhouette"></p>
+                <% end %>
+                <p><%= @place.user.first_name %></p>
               <% end %>
-              <p><%= @place.user.first_name %></p>
             </div>
           </div>
           <div class="details">
@@ -40,18 +44,45 @@
     <div class="col-md-4">
       <% if @place.user == current_user %>
         <h3>Reservations</h3>
-        <% @place.reservations.order(:date).each do |reservation| %>
-          <div class="reservation">
-            <div class="reservation-request">
-              <p><%= reservation.status.upcase %></p>
-              <h4><strong><%= reservation.price %>€</strong></h4>
-            </div>
-            <div class="time">
-              <h4><strong><%= reservation.date %></strong></h4>
-              <p>Duration: <%= reservation.duration %>h</p>
-            </div>
-          </div>
-        <% end %>
+        <div class="pending-reservations">
+          <% @place.reservations.order(:date).each do |reservation| %>
+            <% if reservation.status == "pending" %>
+              <div class="recap-reservation">
+                <div class="request">
+                  <p><%= reservation.status.upcase %></p>
+                  <h4><strong><%= reservation.price %>€</strong></h4>
+                </div>
+                <div class="date">
+                  <h4><strong><%= reservation.date.day %>/<%= reservation.date.month %>/<%= reservation.date.year %> at <%= reservation.date.hour %>:<%= reservation.date.min %></strong></h4>
+                  <p>Duration: <%= reservation.duration %>h</p>
+                </div>
+                <div class="change-status">
+                  <p><%= link_to "ACCEPT", accept_reservation_path(reservation), class: "btn btn-success btn-accept", method: :patch %></p>
+                  <p class="declined"><%= link_to "DECLINE", decline_reservation_path(reservation), class: "btn btn-danger btn-decline", method: :patch %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="answered-reservations">
+          <% @place.reservations.order(:date).each do |reservation| %>
+            <% if reservation.status != "pending" %>
+              <div class="recap-reservation">
+                <div class="request">
+                  <p><%= reservation.status.upcase %></p>
+                  <h4><strong><%= reservation.price %>€</strong></h4>
+                </div>
+                <div class="date">
+                  <h4><strong><%= reservation.date.day %>/<%= reservation.date.month %>/<%= reservation.date.year %> at <%= reservation.date.hour %>:<%= reservation.date.min %></strong></h4>
+                  <p>Duration: <%= reservation.duration %>h</p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+
+
       <% else %>
         <h3>Book now</h3>
         <div class="reservation">

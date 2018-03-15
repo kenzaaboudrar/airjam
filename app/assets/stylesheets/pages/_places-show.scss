@@ -30,10 +30,23 @@ margin-top: 25px;
   border: 1px solid $gray;
   border-radius: 1px;
 }
-.reservation-request {
+.pending-reservations {
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid $gray;
+  border-radius: 1px;
+}
+.answered-reservations {
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid $gray;
+  border-radius: 1px;
+}
+.request {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 15px;
   p, h4 {
     margin: 0px;
   }
@@ -42,6 +55,16 @@ margin-top: 25px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid $gray;
+  p {
+    font-size: 12px;
+    margin: 0px;
+    padding-left: 5px;
+  }
+}
+.date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   p {
     font-size: 12px;
     margin: 0px;
@@ -58,6 +81,24 @@ margin-top: 25px;
     margin: 0px;
     padding-left: 5px;
   }
+}
+.change-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  // margin-top: 5px;
+  // margin-bottom: 15px;
+  // padding: 0px;
+  // border-bottom: 1px solid $gray;
+}
+.recap-reservation {
+  border-bottom: 1px solid $gray;
+}
+.btn-accept {
+  flex: 50%;
+}
+.btn-decline {
+  flex: 50%;
 }
 .btn-yellow {
   border: 1px solid $yellow;

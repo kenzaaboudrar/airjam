@@ -16,18 +16,20 @@ class ReservationsController < ApplicationController
 
   def accept
     @reservation = Reservation.find(params[:id])
-    @reservation.status = "Accepted"
+    @reservation.status = "accepted"
     authorize @reservation
     @reservation.save
-    redirect_to user_path
+    @place = @reservation.place
+    redirect_to place_path(@place)
   end
 
   def decline
     @reservation = Reservation.find(params[:id])
+    @reservation.status = "declined"
     authorize @reservation
-    @reservation.status = "Declined"
     @reservation.save
-    redirect_to user_path
+    @place = @reservation.place
+    redirect_to place_path(@place)
   end
 
   private
