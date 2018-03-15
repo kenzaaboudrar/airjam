@@ -51,7 +51,7 @@
       <% if @place.user == current_user %>
         <h3>Reservations</h3>
         <% if @place.reservations.where(status: "pending").count > 0%>
-          <div class="pending-reservations">
+          <div class="pending-or-answered-reservations">
             <% @place.reservations.order(:date).each do |reservation| %>
               <% if reservation.status == "pending" %>
                 <div class="recap-reservation">
@@ -73,7 +73,7 @@
           </div>
         <% end %>
         <% if @place.reservations.where.not(status: "pending").count > 0%>
-          <div class="answered-reservations">
+          <div class="pending-or-answered-reservations">
             <% @place.reservations.order(:date).each do |reservation| %>
               <% if reservation.status != "pending" %>
                 <div class="recap-reservation">
