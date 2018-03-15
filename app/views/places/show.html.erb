@@ -45,15 +45,32 @@
           <p><%= @place.description %></p>
         </div>
       </div>
-      <div class="reviews-container">
-        <h3>Reviews</h3>
-        <% @place.reviews.each do |review| %>
-          <div class="review">
-            <%= review.title %>
-            <% review.rating.times do %>
-              <strong><i class="fas fa-star"></i></strong>
-            <% end %>
-            <%= review.content %>
+      <div class="flat-info">
+        <div class="price">
+          <h3>Reviews -
+          <% @place.average_rating.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          </h3>
+        </div>
+        <% @place.reviews.order(:created_at).each do |review| %>
+          <div class="review-card">
+            <div class="user text-center">
+              <% if review.user.avatar.present? %>
+                <%= cl_image_tag review.user.avatar, class: "avatar-large" %>
+              <% else %>
+                <p><img class="avatar-large" src="http://www.clker.com/cliparts/m/3/I/C/c/2/grey-silhouette-of-man-hi.png" alt="silhouette"></p>
+              <% end %>
+              <p><%= review.user.first_name %></p>
+            </div>
+            <div class="review-content">
+              <p><strong><%= review.title %> -
+              <% review.rating.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+              </strong></p>
+              <p><%= review.content %></p>
+            </div>
           </div>
         <% end %>
       </div>
@@ -118,6 +135,17 @@
             <%= f.submit "Make a booking request", class: "btn btn-info btn-full-width btn-yellow" %>
           <% end %>
         </div>
+        <% if policy(@review).create? %>
+          <h3>Leave a review</h3>
+          <div class="reservation">
+            <%= simple_form_for [@place, @review] do |f| %>
+              <%= f.input :rating, placeholder: "4" %>
+              <%= f.input :title, placeholder: "Title" %>
+              <%= f.input :content, placeholder: "Content" %>
+              <%= f.submit "Leave a review", class: "btn btn-info btn-full-width btn-yellow" %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
