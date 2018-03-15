@@ -11,10 +11,14 @@
 <div class="main-container">
   <div class="cards-container container">
     <div class="row">
-      <% @places.each do |place| %>
-        <div class="col-xs-12 col-sm-6">
-          <%= render 'shared/card', place: place %>
-        </div>
+      <% if @places == [] %>
+        <div class="default-message">No results for your search.</div>
+      <% else %>
+        <% @places.each do |place| %>
+          <div class="col-xs-12 col-sm-6">
+            <%= render 'shared/card', place: place %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

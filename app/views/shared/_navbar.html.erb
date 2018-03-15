@@ -11,10 +11,14 @@
 
 
       <div class="input-group <%= "hidden" if params[:action] == "home" %>">
-        <input type="text" class="form-control" placeholder="Try 'Paris'">
-        <span class="input-group-btn">
-          <button class="btn btn-outline-danger btn-navbar" type="button"><%= link_to "Search", places_path, id: "text-link" %></button>
-        </span>
+        <div class="input-group">
+          <%= form_tag places_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "e.g. Paris, 75010, jazz, ..." %>
+          <% end %>
+        </div>
       </div>
 
       <!-- Links when logged in -->
