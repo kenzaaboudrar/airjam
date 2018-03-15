@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   resources :places do
     resources :reservations, only: [ :create ]
+    resources :reviews, only: [ :create ]
   end
   resources :reservations, only: [] do
     member do

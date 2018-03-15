@@ -27,8 +27,11 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @reservation = Reservation.new
     @place = Place.find(params[:id])
+    @reservation = Reservation.new
+    @review = Review.new
+    @review.place = @place
+    @review.user = current_user
     authorize @place
   end
 
