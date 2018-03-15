@@ -128,7 +128,22 @@
 .today-reservations-band {
   padding: 10px;
   grid-row: 1 / span 1;
-  grid-column: 2 / span 1
+  grid-column: 2 / span 1;
+  h5 {
+    margin-bottom: 0px;
+    margin-top: 15px;
+  }
+  .bar-link {
+    color: $black-gray;
+    text-decoration: none;
+    &:hover {
+      color: $middle-gray;
+    }
+  }
+  p {
+    margin-bottom: 0px;
+    color: $middle-gray;
+  }
 }
 
 .all-reservations-band {

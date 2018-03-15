@@ -48,12 +48,13 @@ class User < ApplicationRecord
 
   def today_reservations
     @today = Date.today
-    @today_reservations = []
-    self.reservations.each {|resa| @today_reservations << resa if (resa.date.month == @today.month && resa.date.day == @today.day && resa.date.year == @today.year) }
+    today_reservations = []
+    self.reservations.each {|resa| today_reservations << resa if (resa.date.month == @today.month && resa.date.day == @today.day && resa.date.year == @today.year) }
+    return today_reservations
   end
 
   def all_reservations
-    @all_reservations = self.reservations - self.today_reservations - self.pending_reservations
+    all_reservations = self.reservations - self.today_reservations - self.pending_reservations
   end
 
 end
