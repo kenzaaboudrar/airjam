@@ -1,11 +1,14 @@
-<div class="container">
-  <div class="dashboard-container">
+<!-- <div class="container">
+ -->
+  <!-- Cas 1: un user est place owner -->
+  <% if @user.band_manager == false %>
 
+  <div class="dashboard-container-owner">
     <div class="profil">
       <div class="profil-pic">
           <% if @user.avatar.present? %>
             <%= cl_image_tag(@user.avatar, class:"avatar-very-large", crop: :fill) %>
-            <p><%= @user.first_name %> <%= @user.last_name %></p>
+            <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
           <% else %>
             <%= cl_image_tag("http://www.castlehearing.co.uk/wp-content/uploads/2016/03/profile-placeholder.jpg", class:"avatar-very-large", crop: :fill) %>
             <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
@@ -32,11 +35,42 @@
     <div class="pending-reservations reservations">
       <h4>Pending reservations:</h4>
     </div>
+
     <div class="today-reservations reservations">
       <h4>Today reservations:</h4>
     </div>
+
     <div class="all-reservations reservations">
       <h4>All my reservations:</h4>
     </div>
   </div>
-</div>
+
+  <!-- Cas 2: un user est group manager -->
+  <% elsif @user.band_manager == true %>
+
+  <div class="dashboard-container-band">
+    <div class="profil-band">
+      <div class="profil-pic">
+          <% if @user.avatar.present? %>
+            <%= cl_image_tag(@user.avatar, class:"avatar-very-large", crop: :fill) %>
+            <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
+          <% else %>
+            <%= cl_image_tag("http://www.castlehearing.co.uk/wp-content/uploads/2016/03/profile-placeholder.jpg", class:"avatar-very-large", crop: :fill) %>
+            <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
+          <% end %>
+      </div>
+      <div class="band-card">
+      </div>
+    </div>
+
+    <div class="today-reservations-band reservations">
+      <h4>Today reservations:</h4>
+    </div>
+
+    <div class="all-reservations-band reservations">
+      <h4>All my reservations:</h4>
+    </div>
+  </div>
+
+  <% end %>
+<!-- </div> -->
