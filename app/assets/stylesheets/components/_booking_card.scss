@@ -1,11 +1,12 @@
 .accepted {
-  color: $green;
+  color: $green !important;
 }
 .declined {
-  color: $red;
+  color: $red !important;
 }
 .pending {
-  color: $yellow;
+  color: $yellow !important;
+  font-style: italic;
 }
 .reservation {
   margin-top: 25px;

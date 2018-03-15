@@ -39,11 +39,8 @@ class User < ApplicationRecord
   def pending_reservations
     @pending_reservations = []
     self.reservations.each {|resa| @pending_reservations << resa if resa.status == "pending"}
-    if @pending_reservations.length > 0
-    @pending_reservations.sort_by { |resa| resa.date}
-    else
-      []
-    end
+    @pending_reservations.sort_by { |resa| resa.date} if @pending_reservations.length > 0
+    return @pending_reservations
   end
 
   def today_reservations
