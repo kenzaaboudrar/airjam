@@ -21,7 +21,17 @@ id: "navbar-wagon-menu" -->
   <div class="cards-container container">
     <div class="row">
       <% if @places == [] %>
-        <div class="default-message">No results for your search.</div>
+        <div class="default-message"><em>Sorry, we have no places listed under your search criteria.</em>
+          <div class="white-box">Have you thought of these places instead ?
+            <div class="row">
+              <% Place.all.sample(3).each do |place| %>
+                  <div class="col-xs-12 col-sm-6 col-md-4">
+                    <%= render 'shared/card', place: place %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% else %>
         <% @places.each do |place| %>
           <div id="unfiltered-result" class="col-xs-12 col-sm-6">
