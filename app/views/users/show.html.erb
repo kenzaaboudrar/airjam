@@ -34,14 +34,32 @@
 
     <div class="pending-reservations reservations">
       <h4>Pending reservations:</h4>
+      <% @user.pending_reservations_as_owner.each do |resa| %>
+        <h5><%= resa.place.name  %></h5>
+        <p><%= resa.date %></p>
+        <p><%= resa.price %></p>
+        <p><%= resa.user.band_name.present? ? resa.user.band_name : resa.user.first_name%></p>
+      <% end %>
     </div>
 
     <div class="today-reservations reservations">
       <h4>Today reservations:</h4>
+      <% @user.today_reservations_as_owner.each do |resa| %>
+        <h5><%= resa.place.name  %></h5>
+        <p><%= resa.date %></p>
+        <p><%= resa.price %></p>
+        <p><%= resa.user.band_name.present? ? resa.user.band_name : resa.user.first_name%></p>
+        <% end %>
     </div>
 
     <div class="all-reservations reservations">
       <h4>All my reservations:</h4>
+      <% @user.all_reservations_as_owner.each do |resa| %>
+        <h5><%= resa.place.name  %></h5>
+        <p><%= resa.date %></p>
+        <p><%= resa.price %></p>
+        <p><%= resa.user.band_name.present? ? resa.user.band_name : resa.user.first_name%></p>
+        <% end %>
     </div>
   </div>
 
@@ -64,11 +82,27 @@
     </div>
 
     <div class="today-reservations-band reservations">
-      <h4>Today reservations:</h4>
+      <h3>Today reservations:</h3>
+      <% @user.today_reservations.each do |reservation| %>
+        <h5><%= link_to reservation.place.name, place_path(reservation.place), class:"bar-link" %></h5>
+        <p><%= reservation.place.address%></p>
+        <p><%= reservation.date %></p>
+        <p><em><%= reservation.place.price * reservation.duration %>€<em></p>
+      <% end %>
     </div>
 
     <div class="all-reservations-band reservations">
-      <h4>All my reservations:</h4>
+      <h3>All my reservations:</h3>
+      <% if @user.reservations.length >= 1 && %>
+        <% @user.reservations.each do |reservation| %>
+          <% if reservation.status == "accepted" %>
+            <h5><%= link_to reservation.place.name, place_path(reservation.place), class:"bar-link" %></h5>
+            <p><%= reservation.place.address%></p>
+            <p><%= reservation.date.year %>.<%= reservation.date.month %>.<%= reservation.date.day %> at <%= reservation.date.hour %>:<%= reservation.date.min %> for <%= reservation.duration %> hours</p>
+            <p><em><%= reservation.place.price * reservation.duration %>€<em></p>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
