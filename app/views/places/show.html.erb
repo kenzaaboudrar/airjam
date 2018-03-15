@@ -45,6 +45,18 @@
           <p><%= @place.description %></p>
         </div>
       </div>
+      <div class="reviews-container">
+        <h3>Reviews</h3>
+        <% @place.reviews.each do |review| %>
+          <div class="review">
+            <%= review.title %>
+            <% review.rating.times do %>
+              <strong><i class="fas fa-star"></i></strong>
+            <% end %>
+            <%= review.content %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
     <div class="col-md-4">
