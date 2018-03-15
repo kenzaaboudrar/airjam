@@ -64,11 +64,18 @@
     </div>
 
     <div class="today-reservations-band reservations">
-      <h4>Today reservations:</h4>
+      <h3>Today reservations:</h3>
     </div>
 
     <div class="all-reservations-band reservations">
-      <h4>All my reservations:</h4>
+      <h3>All my reservations:</h3>
+      <% if @user.reservations.length >= 1 %>
+        <% @user.reservations.each do |reservation| %>
+          <h5><%= link_to reservation.place.name, place_path(reservation.place), class:"bar-link" %></h5>
+          <p><%= reservation.place.address%></p>
+          <p><em><%= reservation.place.price * reservation.duration %>€<em></p>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
