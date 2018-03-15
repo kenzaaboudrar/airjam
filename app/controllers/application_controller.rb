@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+  # def after_sign_up_path_for(resource_or_scope)
+  #   @user = current_user
+  #   authorize @user
+  #   redirect_to edit_user_path(@user)
+  # end
+
   private
 
   def skip_pundit?

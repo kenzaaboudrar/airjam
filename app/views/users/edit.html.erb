@@ -6,15 +6,15 @@
         <%= f.input :first_name %>
         <%= f.input :last_name %>
         <%= f.input :avatar %>
-        <%= f.input :avatar, as: :hidden %>
-        <%= f.label :band_manager %>
-        <%= f.check_box :band_manager %>
+        <%= f.input :avatar_cache, as: :hidden %>
+        <%= f.collection_check_boxes :band_manager, [[true, 'Band Manager'] ,[false, 'Place owner']], :first, :last %>
+        <%= f.input :band_manager, as: :hidden %>
         <%= f.input :band_name %>
         <%= f.input :number_of_musicians %>
         <%= f.input :music_type %>
         <%= f.input :band_description %>
         <%= f.input :band_photo %>
-        <%= f.input :band_photo, as: :hidden %>
+         <%= f.input :band_photo_cache, as: :hidden %>
         <%= f.submit "Edit profile", class: "btn btn-danger btn-full-width" %>
       <% end %>
     </div>
