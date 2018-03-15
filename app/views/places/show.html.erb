@@ -6,6 +6,12 @@
 
     <div class="col-md-8">
       <div class="flat-info">
+        <% if @place.user == current_user %>
+          <div class="price">
+            <h3><strong><%= @place.price %>€</strong></h3>
+            <p>per hour</p>
+          </div>
+        <% end %>
         <div class="recap">
           <p class="category"><%= @place.category.upcase %></p>
           <div class="main-info">
