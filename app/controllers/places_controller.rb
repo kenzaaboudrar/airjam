@@ -2,7 +2,12 @@ class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @places = policy_scope(Place).order(created_at: :desc).where.not(latitude: nil, longitude: nil)
+    # @places = Place.order(created_at: :desc).where.not(latitude: nil, longitude: nil)
+    if Place.near(params[:query], 5).present?
+      @places = Place.near(params[:query], 5)
+    else
+      @places = Place.search_by_name_address_category_and_description(params[:query]).order(created_at: :desc).where.not(latitude: nil, longitude: nil)
+    end
 
     @markers = @places.map do |place|
       {
