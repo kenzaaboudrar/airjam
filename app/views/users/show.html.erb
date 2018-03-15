@@ -82,11 +82,27 @@
     </div>
 
     <div class="today-reservations-band reservations">
-      <h4>Today reservations:</h4>
+      <h3>Today reservations:</h3>
+      <% @user.today_reservations.each do |reservation| %>
+        <h5><%= link_to reservation.place.name, place_path(reservation.place), class:"bar-link" %></h5>
+        <p><%= reservation.place.address%></p>
+        <p><%= reservation.date %></p>
+        <p><em><%= reservation.place.price * reservation.duration %>€<em></p>
+      <% end %>
     </div>
 
     <div class="all-reservations-band reservations">
-      <h4>All my reservations:</h4>
+      <h3>All my reservations:</h3>
+      <% if @user.reservations.length >= 1 && %>
+        <% @user.reservations.each do |reservation| %>
+          <% if reservation.status == "accepted" %>
+            <h5><%= link_to reservation.place.name, place_path(reservation.place), class:"bar-link" %></h5>
+            <p><%= reservation.place.address%></p>
+            <p><%= reservation.date.year %>.<%= reservation.date.month %>.<%= reservation.date.day %> at <%= reservation.date.hour %>:<%= reservation.date.min %> for <%= reservation.duration %> hours</p>
+            <p><em><%= reservation.place.price * reservation.duration %>€<em></p>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
