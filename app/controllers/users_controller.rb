@@ -1,17 +1,15 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :pending_reservations_as_owner]
 
   def show
-    @user = User.find(params[:id])
     authorize @user
   end
 
   def edit
-    @user = User.find(params[:id])
     authorize @user
   end
 
   def update
-    @user = User.find(params[:id])
     authorize @user
     @user.update(user_params)
     if @user.save
@@ -30,5 +28,6 @@ class UsersController < ApplicationController
   private
 
   def set_user
+    @user = User.find(params[:id])
   end
 end
