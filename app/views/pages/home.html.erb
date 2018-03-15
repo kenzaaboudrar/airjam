@@ -7,9 +7,14 @@
         <h3 class="text-center">Find bars where to play everywhere.</h3>
         <div>
           <div class="input-group">
-           <input type="text" class="form-control" placeholder="Try 'Paris'">
-           <span class="input-group-btn">
-             <button class="btn btn-info" type="button"><%= link_to "Search", places_path, id: "text-link" %></button>
+            <%= form_tag places_path, method: :get do %>
+              <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: "Find a place to play"
+              %>
+            <% end %>
+            <!--  <button class="btn btn-info" type="button"><%= link_to"Search", places_path, id: "text-link" %></button> -->
            </span>
           </div>
         </div>
