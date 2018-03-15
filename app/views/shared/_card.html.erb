@@ -1,3 +1,4 @@
+<%= link_to place_path(place), target: "_blank" do %>
   <div class="card">
     <%= cl_image_tag place.user.avatar, class: "avatar card-avatar"%>
     <div class="card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path place.photo, height: 300, width: 400,crop: :fill %>')"> </div>
@@ -5,11 +6,17 @@
       <div class="place-category">
         <p><%= place.category.upcase %></p>
       </div>
+      <div class="place-rating">
+        <% place.average_rating.times do %>
+         <span><i class="fas fa-star"> </i></span>
+        <% end %>
+      </div>
       <div class="place-name">
-        <h3><%= link_to place.name, place_path(place), target: "blank" %></h3>
+        <h3><%= place.name %></h3>
       </div>
       <div class="place-price">
         <p><em><%= place.price %>€ per hour</em></p>
       </div>
   </div>
 </div>
+<% end %>
