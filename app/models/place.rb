@@ -1,6 +1,7 @@
 class Place < ApplicationRecord
   belongs_to :user
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   validates :name, presence: true
   validates :address, presence: true
   validates :stage_capacity, presence: true

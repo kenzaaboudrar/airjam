@@ -1,6 +1,7 @@
 require 'faker'
 
 puts "Destoying database..."
+Review.destroy_all
 Reservation.destroy_all
 Place.destroy_all
 User.destroy_all
