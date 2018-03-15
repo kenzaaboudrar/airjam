@@ -1,7 +1,93 @@
 .accepted {
-  color: green;
+  color: $green;
 }
-
 .declined {
-  color: red;
+  color: $red;
+}
+.pending {
+  color: $yellow;
+}
+.reservation {
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid $gray;
+  border-radius: 1px;
+}
+.pending-reservations {
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid $gray;
+  border-radius: 1px;
+  .recap-reservation:first-child > .request {
+    margin-top: 0px;
+  }
+  .recap-reservation:last-child {
+    border: none;
+  }
+}
+.answered-reservations {
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid $gray;
+  border-radius: 1px;
+  .recap-reservation:first-child > .request {
+    margin-top: 0px;
+  }
+  .recap-reservation:last-child {
+    border: none;
+  }
+}
+.request {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+  p, h4 {
+    margin: 0px;
+  }
+}
+.time {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $gray;
+  p {
+    font-size: 12px;
+    margin: 0px;
+    padding-left: 5px;
+  }
+}
+.date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  p {
+    font-size: 12px;
+    margin: 0px;
+    padding-left: 5px;
+  }
+}
+.price {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $gray;
+  margin-bottom: 20px;
+  p {
+    font-size: 12px;
+    margin: 0px;
+    padding-left: 5px;
+  }
+}
+.change-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.recap-reservation {
+  border-bottom: 1px solid $gray;
+}
+.btn-accept {
+  flex: 50%;
+}
+.btn-decline {
+  flex: 50%;
 }

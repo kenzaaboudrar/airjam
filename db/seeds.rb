@@ -45,7 +45,7 @@ kenza = User.create(
 puts "Creating 10 places.."
 place = Place.create(
  user_id: nina.id,
- address: "22 Rue Bonaparte, paris",
+ address: "22 Rue Bonaparte, Paris, France",
  name: Faker::BossaNova.song + [" Bar", " Club", ""].sample,
  stage_capacity: rand(1..15),
  equipped: true,
@@ -57,7 +57,7 @@ place = Place.create(
 
 place = Place.create(
  user_id: elsa.id,
- address: "16 villa gaudelet, paris",
+ address: "16 Villa Gaudelet, Paris, France",
  name: Faker::BossaNova.song + [" Bar", " Club", ""].sample,
  stage_capacity: rand(1..15),
  equipped: false,
@@ -69,7 +69,7 @@ place = Place.create(
 
 place = Place.create(
  user_id: elsa.id,
- address: "36 rue des vinaigriers, paris",
+ address: "36 Rue des Vinaigriers, Paris, France",
  name: Faker::BossaNova.song + [" Bar", " Club", ""].sample,
  stage_capacity: rand(1..15),
  equipped: true,
@@ -81,7 +81,7 @@ place = Place.create(
 
 place = Place.create(
  user_id: nina.id,
- address: "26 rue du borrego, paris",
+ address: "26 Rue du Borrégo, Paris, France",
  name: Faker::BossaNova.song + [" Bar", " Club", ""].sample,
  stage_capacity: rand(1..15),
  equipped: true,
@@ -93,7 +93,7 @@ place = Place.create(
 
 place = Place.create(
  user_id: nina.id,
- address: "10 rue du paradis, paris",
+ address: "10 Rue de Paradis, Paris, France",
  name: Faker::BossaNova.song + [" Bar", " Club", ""].sample,
  stage_capacity: rand(1..15),
  equipped: false,
@@ -105,7 +105,7 @@ place = Place.create(
 
 place = Place.create(
  user_id: elsa.id,
- address: "12 rue de l'ancienne comedie, paris",
+ address: "12 Rue de l'Ancienne Comédie, Paris, France",
  name: Faker::BossaNova.song + [" Bar", " Club", ""].sample,
  stage_capacity: rand(1..15),
  equipped: true,
@@ -117,7 +117,7 @@ place = Place.create(
 
 place = Place.create(
  user_id: elsa.id,
- address: "14 rue crespin du gast, paris",
+ address: "14 Rue Crespin du Gast, Paris, France",
  name: Faker::BossaNova.song + [" Bar", " Club", ""].sample,
  stage_capacity: rand(1..15),
  equipped: false,
@@ -129,7 +129,7 @@ place = Place.create(
 
 place = Place.create(
  user_id: nina.id,
- address: "14 rue de chavrol, paris",
+ address: "14 Rue de Chabrol, Paris, France",
  name: Faker::BossaNova.song + [" Bar", " Club", ""].sample,
  stage_capacity: rand(1..15),
  equipped: true,
@@ -141,7 +141,7 @@ place = Place.create(
 
 place = Place.create(
  user_id: elsa.id,
- address: "3 rue campagne première, paris",
+ address: "3 Rue Campagne Première, Paris, France",
  name: Faker::BossaNova.song + [" Bar", " Club", ""].sample,
  stage_capacity: rand(1..15),
  equipped: true,
@@ -153,7 +153,7 @@ place = Place.create(
 
 place = Place.create(
  user_id: nina.id,
- address: "150 boulevard du montparnasse, paris",
+ address: "150 Boulevard du Montparnasse, Paris, France",
  name: Faker::BossaNova.song + [" Bar", " Club", ""].sample,
  stage_capacity: rand(1..15),
  equipped: true,

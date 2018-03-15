@@ -50,42 +50,46 @@
     <div class="col-md-4">
       <% if @place.user == current_user %>
         <h3>Reservations</h3>
-        <div class="pending-reservations">
-          <% @place.reservations.order(:date).each do |reservation| %>
-            <% if reservation.status == "pending" %>
-              <div class="recap-reservation">
-                <div class="request">
-                  <p><%= reservation.status.upcase %></p>
-                  <h4><strong><%= reservation.price %>€</strong></h4>
+        <% if @place.reservations.where(status: "pending").count > 0%>
+          <div class="pending-reservations">
+            <% @place.reservations.order(:date).each do |reservation| %>
+              <% if reservation.status == "pending" %>
+                <div class="recap-reservation">
+                  <div class="request">
+                    <p class="pending"><%= reservation.status.upcase %></p>
+                    <h4><strong><%= reservation.price %>€</strong></h4>
+                  </div>
+                  <div class="date">
+                    <h5><strong><%= reservation.date.strftime("%B %d, %Y %I:%M %p") %></strong></h5>
+                    <p>Duration: <%= reservation.duration %>h</p>
+                  </div>
+                  <div class="change-status">
+                    <p><%= link_to "ACCEPT", accept_reservation_path(reservation), class: "btn btn-success btn-accept", method: :patch %></p>
+                    <p><%= link_to "DECLINE", decline_reservation_path(reservation), class: "btn btn-danger btn-decline", method: :patch %></p>
+                  </div>
                 </div>
-                <div class="date">
-                  <h4><strong><%= reservation.date.day %>/<%= reservation.date.month %>/<%= reservation.date.year %> at <%= reservation.date.hour %>:<%= reservation.date.min %></strong></h4>
-                  <p>Duration: <%= reservation.duration %>h</p>
-                </div>
-                <div class="change-status">
-                  <p><%= link_to "ACCEPT", accept_reservation_path(reservation), class: "btn btn-success btn-accept", method: :patch %></p>
-                  <p class="declined"><%= link_to "DECLINE", decline_reservation_path(reservation), class: "btn btn-danger btn-decline", method: :patch %></p>
-                </div>
-              </div>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
-        <div class="answered-reservations">
-          <% @place.reservations.order(:date).each do |reservation| %>
-            <% if reservation.status != "pending" %>
-              <div class="recap-reservation">
-                <div class="request">
-                  <p><%= reservation.status.upcase %></p>
-                  <h4><strong><%= reservation.price %>€</strong></h4>
+          </div>
+        <% end %>
+        <% if @place.reservations.where.not(status: "pending").count > 0%>
+          <div class="answered-reservations">
+            <% @place.reservations.order(:date).each do |reservation| %>
+              <% if reservation.status != "pending" %>
+                <div class="recap-reservation">
+                  <div class="request">
+                    <p class="<%= reservation.status %>"><%= reservation.status.upcase %></p>
+                    <h4><strong><%= reservation.price %>€</strong></h4>
+                  </div>
+                  <div class="date">
+                    <h5><strong><%= reservation.date.strftime("%B %d, %Y %I:%M %p") %></strong></h5>
+                    <p>Duration: <%= reservation.duration %>h</p>
+                  </div>
                 </div>
-                <div class="date">
-                  <h4><strong><%= reservation.date.day %>/<%= reservation.date.month %>/<%= reservation.date.year %> at <%= reservation.date.hour %>:<%= reservation.date.min %></strong></h4>
-                  <p>Duration: <%= reservation.duration %>h</p>
-                </div>
-              </div>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
 
 
 
@@ -97,8 +101,8 @@
             <p>per hour</p>
           </div>
           <%= simple_form_for [@place, @reservation] do |f| %>
-            <%= f.input :date, as: :string, input_html: {class: "datepicker"} %>
-            <%= f.input :duration %>
+            <%= f.input :date, as: :string, placeholder: "April 20, 2020 9:00 PM", input_html: {class: "datepicker"} %>
+            <%= f.input :duration, placeholder: "4 (hours)" %>
             <%= f.submit "Make a booking request", class: "btn btn-info btn-full-width btn-yellow" %>
           <% end %>
         </div>
