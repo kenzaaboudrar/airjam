@@ -7,8 +7,7 @@
         <%= f.input :last_name %>
         <%= f.input :avatar %>
         <%= f.input :avatar, as: :hidden %>
-        <%= f.label :band_manager %>
-        <%= f.check_box :band_manager %>
+        <%= f.collection_check_boxes :band_manager, [[true, 'Band Manager'] ,[false, 'Place owner']], :first, :last %>
         <%= f.input :band_name %>
         <%= f.input :number_of_musicians %>
         <%= f.input :music_type %>
