@@ -6,10 +6,15 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     authorize @review
     if @review.save
-      redirect_to place_path(@place)
+      respond_to do |format|
+        format.html { redirect_to place_path(@place) }
+        format.js
+      end
     else
-      render "places/show"
-      flash[:alert] = "Review post failed, please try again."
+      respond_to do |format|
+        format.html { render 'places/show' }
+        format.js
+      end
     end
   end
 
