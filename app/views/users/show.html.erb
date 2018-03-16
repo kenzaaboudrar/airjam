@@ -45,7 +45,7 @@
           <% @user.pending_reservations_as_owner.each do |reservation| %>
             <%= render "shared/resa_card", reservation: reservation %>
           <% end %>
-          <%= "No pending reservations." if @pending_reservations_as_owner == [] %>
+          <%= "No pending reservations." if @user.pending_reservations_as_owner == [] %>
         </div>
 
         <div class="today-reservations reservations">
@@ -53,7 +53,7 @@
           <% @user.today_reservations_as_owner.each do |reservation| %>
             <%= render "shared/resa_card", reservation: reservation %>
           <% end %>
-          <%= "No reservations today." if @today_reservations_as_owner == [] %>
+          <%= "No reservations today." if @user.today_reservations_as_owner == [] %>
         </div>
 
         <div class="all-reservations reservations">
