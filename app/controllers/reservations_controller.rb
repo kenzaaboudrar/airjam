@@ -8,15 +8,9 @@ class ReservationsController < ApplicationController
     @reservation.price = @place.price * @reservation.duration
     authorize @reservation
     if @reservation.save
-      respond_to do |format|
-        format.html { redirect_to user_path(@reservation.user) }
-        format.js
-      end
+       redirect_to user_path(@reservation.user)
     else
-      respond_to do |format|
-        format.html { render "places/show" }
-        format.js
-      end
+      render "places/show"
     end
   end
 
