@@ -84,7 +84,7 @@
           <div class="pending-or-answered-reservations">
             <% @place.reservations.order(:date).each do |reservation| %>
               <% if reservation.status == "pending" %>
-                <div class="recap-reservation">
+                <div class="recap-reservation pending-resa">
                   <div class="request">
                     <p class="pending"><%= reservation.status.upcase %></p>
                     <h4><strong><%= reservation.price %>€</strong></h4>
@@ -103,7 +103,7 @@
           </div>
         <% end %>
         <% if @place.reservations.where.not(status: "pending").count > 0%>
-          <div class="pending-or-answered-reservations">
+          <div class="pending-or-answered-reservations confirmed-resa">
             <% @place.reservations.order(:date).each do |reservation| %>
               <% if reservation.status != "pending" %>
                 <div class="recap-reservation">

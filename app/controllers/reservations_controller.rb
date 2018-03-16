@@ -16,11 +16,16 @@ class ReservationsController < ApplicationController
 
   def accept
     @reservation = Reservation.find(params[:id])
-    @reservation.status = "accepted"
     authorize @reservation
-    @reservation.save
-    @place = @reservation.place
-    redirect_to place_path(@place)
+    respond_to do |format|
+      format.html {
+        @reservation.status = "accepted"
+        @reservation.save
+        @place = @reservation.place
+        redirect_to place_path(@place)
+      }
+      format.js
+    end
   end
 
   def decline

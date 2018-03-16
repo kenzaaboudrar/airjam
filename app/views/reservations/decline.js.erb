@@ -1,0 +1,8 @@
+function declineReservation(confirmedResa) {
+  const pendingResa = document.querySelector('.pending-resa');
+  pendingResa.remove();
+  recapDiv = document.querySelector('.confirmed-resa');
+  recapDiv.insertAdjacentHTML('beforeend', confirmedResa);
+}
+
+declineReservation('<%= j render "places/confirmed-resa"%>, reservation: @reservation')

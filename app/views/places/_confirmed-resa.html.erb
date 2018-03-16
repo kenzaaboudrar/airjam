@@ -1,0 +1,8 @@
+<div class="request">
+  <p class="<%= reservation.status %>"><%= reservation.status.upcase %></p>
+  <h4><strong><%= reservation.price %>€</strong></h4>
+</div>
+<div class="date">
+  <h5><strong><%= reservation.date.strftime("%B %d, %Y %I:%M %p") %></strong></h5>
+  <p>Duration: <%= reservation.duration %>h</p>
+</div>
