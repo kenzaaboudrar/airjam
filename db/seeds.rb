@@ -7,7 +7,7 @@ Place.destroy_all
 User.destroy_all
 
 
-puts "Creating 2 users.."
+puts "Creating 4 users.."
 nina = User.create(
   email: "nina.chanteau@hec.edu",
   password: "123456",
@@ -163,7 +163,7 @@ place = Place.create(
  price: rand(20..400)
 )
 
-
+puts "Finished!"
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
