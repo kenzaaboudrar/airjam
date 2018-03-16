@@ -13,12 +13,15 @@ class User < ApplicationRecord
   mount_uploader :avatar, PhotoUploader
   mount_uploader :band_photo, PhotoUploader
 
+  def future_reservations_as_owner
+    self.reservations_as_owner.select { |resa| resa unless resa.date.past?}
+  end
+
 
   def pending_reservations_as_owner
-    @pending_reservations_as_owner = []
-    self.reservations_as_owner.each {|resa| @pending_reservations_as_owner << resa if resa.status == "pending"}
+    @pending_reservations_as_owner = self.future_reservations_as_owner.select {|resa| resa if resa.status == "pending"}
     if @pending_reservations_as_owner.length > 0
-    @pending_reservations_as_owner.sort_by { |resa| resa.date}
+      @pending_reservations_as_owner.sort_by { |resa| resa.date}
     else
       []
     end
@@ -26,32 +29,33 @@ class User < ApplicationRecord
 
   def today_reservations_as_owner
     @today = Date.today
-    @today_reservations_as_owner = []
-    self.reservations_as_owner.each {|resa| @today_reservations_as_owner << resa if (resa.date.month == @today.month && resa.date.day == @today.day && resa.date.year == @today.year) }
-    @confirmed_today = []
-    @today_reservations_as_owner.each {|resa| @confirmed_today << resa if resa.status.downcase == "accepted"}
+    @today_reservations_as_owner = self.future_reservations_as_owner.select {|resa| resa if (resa.date.month == @today.month && resa.date.day == @today.day && resa.date.year == @today.year) }
+    return @today_reservations_as_owner.select {|resa| resa if resa.status.downcase == "accepted"}
   end
 
   def all_reservations_as_owner
-    @all_reservations_as_owner = self.reservations_as_owner - self.pending_reservations_as_owner - self.today_reservations_as_owner
+    @all_reservations_as_owner = self.future_reservations_as_owner - self.pending_reservations_as_owner - self.today_reservations_as_owner
+    return @all_reservations_as_owner.sort_by { |resa| resa.date}
+  end
+
+  def future_reservations
+    self.reservations.select { |resa| resa unless resa.date.past?}
   end
 
   def pending_reservations
-    @pending_reservations = []
-    self.reservations.each {|resa| @pending_reservations << resa if resa.status == "pending"}
-    @pending_reservations.sort_by { |resa| resa.date} if @pending_reservations.length > 0
-    return @pending_reservations
+    @pending_reservations = self.future_reservations.select {|resa| resa if resa.status == "pending"}
+    return @pending_reservations.sort_by { |resa| resa.date} if @pending_reservations.length > 0
   end
 
   def today_reservations
     @today = Date.today
-    today_reservations = []
-    self.reservations.each {|resa| today_reservations << resa if (resa.date.month == @today.month && resa.date.day == @today.day && resa.date.year == @today.year) }
-    return today_reservations
+    return self.reservations.select {|resa| resa if (resa.date.month == @today.month && resa.date.day == @today.day && resa.date.year == @today.year) && resa.status.downcase != "declined" }
   end
 
   def all_reservations
-    all_reservations = self.reservations - self.today_reservations - self.pending_reservations
+    all_reservations = self.future_reservations - self.today_reservations - self.pending_reservations
+    all_reservations.select {|resa| resa unless resa.date.past?}
+    return all_reservations
   end
 
 end

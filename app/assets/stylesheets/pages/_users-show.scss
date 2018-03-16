@@ -1,47 +1,39 @@
-.dashboard-container-owner {
-  margin: 20px;
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  grid-template-rows: 1fr 1fr 1fr
+.wrapper {
+  min-height: 100%;
 }
 
 .profil {
-  grid-row: 1 / span 3;
-  grid-column: 1 / span 1;
   margin: 20px 20px 20px 0px;
 }
 
 .profil-pic {
   margin-bottom: 20px;
   .avatar-very-large {
-     display: block;
+    display: block;
+    margin: 0 auto;
+  }
+  .btn {
+    display: block;
     margin: 0 auto;
   }
 }
 
+.profil-places {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .reservations {
   margin: 10px 0px 10px 0px;
   background-color: white;
   border-radius: 3px;
-  padding: 5px;
+  padding: 5px 10px;
+  border-left: 5px solid $yellow;
+  h3 {
+    margin-top: 5px;
+  }
 }
-
-.pending-reservations {
-  grid-row: 1 / span 1;
-  grid-column: 2 / span 1
-}
-
-.today-reservations {
-  grid-row: 2 / span 1;
-  grid-column: 2 / span 1
-}
-
-.all-reservations {
-  grid-row: 3 / span 1 ;
-  grid-column: 2 / span 1
-}
-
 
 .mini-cards-container {
   width: 100%;
@@ -53,7 +45,7 @@
   border-radius: 3px;
   margin: 10px 0px 2px 0px;
   box-shadow: 1px 1px 2px #e7e7e7;
-  width: 200px;
+  width: 240px;
 }
 
 .mini-card-photo {
@@ -105,40 +97,25 @@
   }
 }
 
-.dashboard-container-band {
-  margin: 20px;
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  grid-template-rows: 1fr 1fr
-}
-
 .profil-band {
-  grid-row: 1 / span 3;
-  grid-column: 1 / span 1;
   margin: 20px 20px 20px 0px;
 }
 
-.reservations {
-  border-left: 5px solid $yellow;
-  h3 {
-    margin-top: 5px;
+.bar-link {
+  color: $yellow;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    color: $middle-gray;
   }
 }
 
 .today-reservations-band {
+  margin-top: 15px;
   padding: 10px;
-  grid-row: 1 / span 1;
-  grid-column: 2 / span 1;
   h5 {
     margin-bottom: 0px;
     margin-top: 15px;
-  }
-  .bar-link {
-    color: $black-gray;
-    text-decoration: none;
-    &:hover {
-      color: $middle-gray;
-    }
   }
   p {
     margin-bottom: 0px;
@@ -148,18 +125,9 @@
 
 .all-reservations-band {
   padding: 10px;
-  grid-row: 2 / span 1;
-  grid-column: 2 / span 1;
   h5 {
     margin-bottom: 0px;
     margin-top: 15px;
-  }
-  .bar-link {
-    color: $black-gray;
-    text-decoration: none;
-    &:hover {
-      color: $middle-gray;
-    }
   }
   p {
     margin-bottom: 0px;
