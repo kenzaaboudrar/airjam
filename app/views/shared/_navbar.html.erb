@@ -39,7 +39,9 @@
               <%= link_to user_path(current_user) do %><%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
-            <li><%= link_to t(".new", default: "Add a Place"), new_place_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+            <% if !current_user.band_manager %>
+              <li><%= link_to t(".new", default: "Add a Place"), new_place_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+            <% end %>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %><%= t(".sign_out", default: "Log out") %>
               <% end %>
