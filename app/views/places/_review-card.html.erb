@@ -1,0 +1,18 @@
+<div class="review-card">
+  <div class="user text-center">
+    <% if review.user.avatar.present? %>
+      <%= cl_image_tag review.user.avatar, class: "avatar-large" %>
+    <% else %>
+      <p><img class="avatar-large" src="http://www.clker.com/cliparts/m/3/I/C/c/2/grey-silhouette-of-man-hi.png" alt="silhouette"></p>
+    <% end %>
+    <p><%= review.user.first_name %></p>
+  </div>
+  <div class="review-content">
+    <p><strong><%= review.title %> -
+    <% review.rating.times do %>
+      <i class="fas fa-star"></i>
+    <% end %>
+    </strong></p>
+    <p><%= review.content %></p>
+  </div>
+</div>
