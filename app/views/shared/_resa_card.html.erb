@@ -1,0 +1,27 @@
+<div class="resa-card">
+  <div class="resa-details">
+    <h4><strong class="yellow"><%= link_to reservation.place.name, place_path(reservation.place) %></strong> - <strong><%= reservation.price %>€</strong></h4>
+    <h5><strong><%= reservation.date.strftime("%B %d, %Y %I:%M %p") %></strong></h5>
+    <p>Duration: <%= reservation.duration %>h</p>
+  </div>
+  <div class="resa-status">
+    <p class="<%= reservation.status %>"><%= reservation.status.upcase %></p>
+  </div>
+  <div class="user text-center">
+    <% if reservation.user == current_user %>
+      <% if reservation.place.user.avatar.present? %>
+        <%= cl_image_tag reservation.place.user.avatar, class: "avatar-large" %>
+      <% else %>
+        <p><img class="avatar-large" src="http://www.clker.com/cliparts/m/3/I/C/c/2/grey-silhouette-of-man-hi.png" alt="silhouette"></p>
+      <% end %>
+      <p><%= reservation.place.user.first_name %></p>
+    <% else %>
+      <% if reservation.user.avatar.present? %>
+        <%= cl_image_tag reservation.user.avatar, class: "avatar-large" %>
+      <% else %>
+        <p><img class="avatar-large" src="http://www.clker.com/cliparts/m/3/I/C/c/2/grey-silhouette-of-man-hi.png" alt="silhouette"></p>
+      <% end %>
+      <p><%= reservation.user.first_name %></p>
+    <% end %>
+  </div>
+</div>
