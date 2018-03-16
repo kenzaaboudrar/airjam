@@ -1,11 +1,16 @@
 function notify() {
-  const notifications = document.querySelector('javascript');
+  const notifications = document.querySelector('notification');
+
   const userId = notifications.dataset.userId
   fetch(`/users/${userId}/notification`)
   .then(response => response.json())
   .then((data) => {
-      notifications.style.display = "block";
-      notifications.innerHTML = data.number;
+      if (data.number === 0) {
+        notifications.classList.add("transparent");
+      } else {
+        notifications.classList.remove("transparent");
+        notifications.innerHTML = data.number;
+      };
   });
 };
 

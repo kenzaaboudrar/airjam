@@ -36,14 +36,11 @@
               <%= image_tag "http://www.clker.com/cliparts/m/3/I/C/c/2/grey-silhouette-of-man-hi.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
             <% end %>
   <!-- Adding notification on avatar -->
-            <div class="javascript">
-            <% if current_user.pending_reservations_as_owner.length > 0 %>
-                <div id="notification" class="notification-position text-center" data-user-id="<%= current_user.id %>">
-                    <%= current_user.pending_reservations_as_owner.length %>
+
+                <div class="transparent notification notification-position text-center"
+                data-user-id="<%= current_user.id %>">
+                  <%= current_user.pending_reservations_as_owner.length %>
                 </div>
-            <% else %>
-            <% end %>
-            </div>
 
 <!-- Start of dropdown -->
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
