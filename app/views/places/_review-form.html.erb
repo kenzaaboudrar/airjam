@@ -1,5 +1,5 @@
 <%= simple_form_for([place, review], remote: true, class: "new_review") do |f| %>
-  <%= f.input :rating, placeholder: "4" %>
+  <%= f.input :rating, placeholder: "1 to 5 stars" %>
   <%= f.input :title, placeholder: "Title" %>
   <%= f.input :content, placeholder: "Content" %>
   <%= f.submit "Leave a review", class: "btn btn-info btn-full-width btn-yellow" %>

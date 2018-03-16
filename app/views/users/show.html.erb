@@ -100,7 +100,7 @@
         <div class="all-reservations-band reservations">
           <h3>All my reservations:</h3>
           <% if @user.reservations.length >= 1 %>
-            <% @user.reservations.each do |reservation| %>
+            <% @user.all_reservations.each do |reservation| %>
               <%= render "shared/resa_card", reservation: reservation %>
             <% end %>
             <% else %>

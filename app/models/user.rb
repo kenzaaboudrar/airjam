@@ -57,7 +57,7 @@ class User < ApplicationRecord
   end
 
   def all_reservations
-    all_reservations = self.future_reservations - self.today_reservations - self.pending_reservations
+    all_reservations = self.reservations - self.today_reservations
     all_reservations.select {|resa| resa unless resa.date.past?}
     return all_reservations.sort_by { |resa| resa.date}
   end

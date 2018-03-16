@@ -52,10 +52,10 @@ place = Place.create(
  remote_photo_url: "https://kitt.lewagon.com/placeholder/cities/paris",
  description: Faker::Lorem.paragraph,
  category: ["Blues Bar", "Buena Vista", "Macarena", "Jazz", "American Rock", "Indie"].sample,
- price: rand(20..400)
+ price: 200
 )
 
-place = Place.create(
+place_reserved = Place.create(
  user_id: elsa.id,
  address: "16 Villa Gaudelet, Paris, France",
  name: Faker::BossaNova.song + [" Bar", " Club", ""].sample,
@@ -163,11 +163,14 @@ place = Place.create(
  price: rand(20..400)
 )
 
+puts "Creating 1 reservation"
+reservation = Reservation.create(
+  user_id: marion.id,
+  place_id: place_reserved.id,
+  date: "Thu, 15 Mar 2018 12:00:00 UTC +00:00",
+  duration: 4,
+  price: 800,
+  status: "accepted"
+)
+
 puts "Finished!"
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
