@@ -9,16 +9,16 @@
       <div class="col-md-3">
         <div class="profil">
           <div class="profil-pic">
-              <% if @user.avatar.present? %>
-                <%= cl_image_tag(@user.avatar, class:"avatar-very-large", crop: :fill) %>
+            <% if @user.avatar.present? %>
+              <%= cl_image_tag(@user.avatar, class:"avatar-very-large", crop: :fill) %>
+              <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
+            <% else %>
+              <%= cl_image_tag("http://www.castlehearing.co.uk/wp-content/uploads/2016/03/profile-placeholder.jpg", class:"avatar-very-large", crop: :fill) %>
+              <% if @user.first_name.present? && @user.last_name.present? %>
                 <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
-              <% else %>
-                <%= cl_image_tag("http://www.castlehearing.co.uk/wp-content/uploads/2016/03/profile-placeholder.jpg", class:"avatar-very-large", crop: :fill) %>
-                <% if @user.first_name.present? && @user.last_name.present? %>
-                  <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
-                <% end %>
-                <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
               <% end %>
+              <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
+            <% end %>
           </div>
           <div class="profil-places">
             <% @user.places.each do |place| %>
@@ -43,6 +43,7 @@
           <% @user.pending_reservations_as_owner.each do |reservation| %>
             <%= render "shared/resa_card", reservation: reservation %>
           <% end %>
+          <%= "No pending reservations." if @pending_reservations_as_owner == [] %>
         </div>
 
         <div class="today-reservations reservations">
@@ -50,6 +51,7 @@
           <% @user.today_reservations_as_owner.each do |reservation| %>
             <%= render "shared/resa_card", reservation: reservation %>
           <% end %>
+          <%= "No reservations today." if @today_reservations_as_owner == [] %>
         </div>
 
         <div class="all-reservations reservations">
@@ -65,74 +67,45 @@
   <!-- Cas 2: un user est group manager -->
   <% else %>
 
-  <div class="dashboard-container-band">
-    <div class="profil-band">
-      <div class="profil-pic">
-          <% if @user.avatar.present? %>
-            <%= cl_image_tag(@user.avatar, class:"avatar-very-large", crop: :fill) %>
-            <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
-          <% else %>
-            <%= cl_image_tag("http://www.castlehearing.co.uk/wp-content/uploads/2016/03/profile-placeholder.jpg", class:"avatar-very-large", crop: :fill) %>
-            <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
-          <% end %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="profil-band">
+          <div class="profil-pic">
+              <% if @user.avatar.present? %>
+                <%= cl_image_tag(@user.avatar, class:"avatar-very-large", crop: :fill) %>
+                <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
+              <% else %>
+                <%= cl_image_tag("http://www.castlehearing.co.uk/wp-content/uploads/2016/03/profile-placeholder.jpg", class:"avatar-very-large", crop: :fill) %>
+                <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
+              <% end %>
+          </div>
+          <div class="band-card">
+          </div>
+        </div>
       </div>
-      <div class="band-card">
-      </div>
-    </div>
 
-    <div class="today-reservations-band reservations">
-      <h3>Today's reservations:</h3>
-      <% @user.today_reservations.each do |reservation| %>
-        <h5><%= link_to reservation.place.name, place_path(reservation.place), class:"bar-link" %></h5>
-        <p><%= reservation.place.address%></p>
-        <p><%= reservation.date %></p>
-        <p><em><%= reservation.place.price * reservation.duration %>€<em></p>
-      <% end %>
-      <%= "No reservations today." if @user.today_reservations == [] %>
-    </div>
-
-     <!-- Affichage moins beau que celui d'en dessous sous "elsif reservation.status == "pending"
-
-     <div class="pending-reservations reservations">
-      <h4>Pending reservations:</h4>
-      <% @user.pending_reservations.each do |resa| %>
-        <h5><%= resa.place.name  %></h5>
-        <p><%= resa.date %></p>
-        <p><%= resa.price %></p>
-        <p><%= resa.user.band_name.present? ? resa.user.band_name : resa.user.first_name%></p>
-      <% end %>
-    </div>
--->
-
-    <div class="all-reservations-band reservations">
-      <h3>All my reservations:</h3>
-      <% if @user.reservations.length >= 1 %>
-        <% @user.reservations.each do |reservation| %>
-          <% if reservation.status == "accepted" %>
-            <h5><%= link_to reservation.place.name, place_path(reservation.place), class:"bar-link" %> </h5>
-            <p class="accepted">Accepted</p>
-            <p><%= reservation.place.address%></p>
-            <p><%= reservation.date.year %>.<%= reservation.date.month %>.<%= reservation.date.day %> at <%= reservation.date.hour %>:<%= reservation.date.min %> for <%= reservation.duration %> hours</p>
-            <p><em><%= reservation.place.price * reservation.duration %>€<em></p>
-          <% elsif reservation.status == "pending" %>
-            <h5><%= link_to reservation.place.name, place_path(reservation.place), class:"bar-link" %></h5>
-            <p class="pending">Pending</p>
-            <p><%= reservation.place.address%></p>
-            <p><%= reservation.date.year %>.<%= reservation.date.month %>.<%= reservation.date.day %> at <%= reservation.date.hour %>:<%= reservation.date.min %> for <%= reservation.duration %> hours</p>
-            <p><em><%= reservation.place.price * reservation.duration %>€<em></p>
-          <% elsif reservation.status == "declined" %>
-            <h5><%= link_to reservation.place.name, place_path(reservation.place), class:"bar-link" %></h5>
-            <p class="declined">Declined</p>
-            <p><%= reservation.place.address%></p>
-            <p><%= reservation.date.year %>.<%= reservation.date.month %>.<%= reservation.date.day %> at <%= reservation.date.hour %>:<%= reservation.date.min %> for <%= reservation.duration %> hours</p>
-            <p><em><%= reservation.place.price * reservation.duration %>€<em></p>
+      <div class="col-md-9">
+        <div class="today-reservations-band reservations">
+          <h3>Today's reservations:</h3>
+          <% @user.today_reservations.each do |reservation| %>
+            <%= render "shared/resa_card", reservation: reservation %>
           <% end %>
-        <% end %>
-        <% else %>
-        <%= "No reservations."  %>
-      <% end %>
+          <%= "No reservations today." if @user.today_reservations == [] %>
+        </div>
+
+        <div class="all-reservations-band reservations">
+          <h3>All my reservations:</h3>
+          <% if @user.reservations.length >= 1 %>
+            <% @user.reservations.each do |reservation| %>
+              <%= render "shared/resa_card", reservation: reservation %>
+            <% end %>
+            <% else %>
+            <%= "No reservations."  %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-
   <% end %>
 </div>
