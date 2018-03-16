@@ -1,6 +1,6 @@
 <div class="resa-card">
   <div class="resa-details">
-    <h4><strong class="yellow"><%= link_to reservation.place.name, place_path(reservation.place) %></strong> - <strong><%= reservation.price %>€</strong></h4>
+    <h5><strong><%= link_to reservation.place.name, place_path(reservation.place), class: "bar-link" %></strong> - <strong><%= reservation.price %>€</strong></h5>
     <h5><strong><%= reservation.date.strftime("%B %d, %Y %I:%M %p") %></strong></h5>
     <p>Duration: <%= reservation.duration %>h</p>
   </div>
