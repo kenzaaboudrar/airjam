@@ -9,6 +9,7 @@ function notify() {
         notifications.style.display ="none";
       } else {
         notifications.style.display = "block";
+        notifications.innerHTML = data.number;
       };
   });
 };
