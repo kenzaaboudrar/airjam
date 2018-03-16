@@ -1,0 +1,18 @@
+function refreshForm(innerHTML) {
+  const newReviewForm = document.querySelector('.new_review');
+  newReviewForm.innerHTML = innerHTML;
+}
+
+function addReview(reviewHTML) {
+  const reviews = document.querySelector('.reviews');
+  reviews.insertAdjacentHTML('beforeend', reviewHTML);
+}
+
+<% if @review.errors.any? %>
+  refreshForm('<%= j render "places/review-form", place: @place, review: @review %>');
+<% else %>
+  addReview('<%= j render "places/review-card", review: @review %>');
+  refreshForm('<%= j render "places/review-form", place: @place, review: Review.new %>');
+<% end %>
+
+
