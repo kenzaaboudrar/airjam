@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   patch '/reservations/:id', to: 'reservations#decline', as: 'decline'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    get '/notification', to: 'reservations#notify', as: 'notify'
+  end
   resources :places do
     resources :reservations, only: [ :create ]
     resources :reviews, only: [ :create ]
@@ -16,4 +18,7 @@ Rails.application.routes.draw do
       patch :decline
     end
   end
+
+
+
 end
