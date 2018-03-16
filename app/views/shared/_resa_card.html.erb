@@ -8,7 +8,7 @@
     <% if reservation.user == current_user && reservation.date.past? %>
       <p class="<%= reservation.status %>"><%= link_to "LEAVE A REVIEW", place_path(reservation.place) %></p>
     <% else %>
-      <p class="<%= reservation.status %>"><%= reservation.status.upcase %></p>
+      <p class="<%= reservation.status %>"><%= link_to "REVIEWED", place_path(reservation.place) %></p>
     <% end %>
   </div>
   <div class="user text-center">
