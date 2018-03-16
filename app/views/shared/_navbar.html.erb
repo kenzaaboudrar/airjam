@@ -37,7 +37,7 @@
             <% end %>
   <!-- Adding notification on avatar -->
             <% if current_user.pending_reservations_as_owner.length > 0 %>
-              <div id="notification" class="notification-position text-center">
+              <div id="notification" class="notification-position text-center" data-user-id="<%= current_user.id %>">
                   <%= current_user.pending_reservations_as_owner.length %>
               </div>
             <% end %>

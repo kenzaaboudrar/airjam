@@ -1,0 +1,6 @@
+function showNotif(notification) {
+  holder = document.querySelector('.notification-holder')
+  holder.insertAdjacentHTML('beforeend', notification)
+}
+
+showNotif('<%= j render "shared/notification"')

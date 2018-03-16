@@ -16,4 +16,9 @@ class ReservationPolicy < ApplicationPolicy
   def decline?
     record.place.user == user
   end
+
+  def notify?
+    true
+  end
+
 end
