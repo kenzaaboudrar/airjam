@@ -5,4 +5,12 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  .user {
+    width: 90px;
+    margin-right: 10px;
+    padding: 0px;
+    p {
+      width: 90px;
+    }
+  }
 }
