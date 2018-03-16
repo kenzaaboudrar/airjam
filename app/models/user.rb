@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
   def all_reservations_as_owner
     @all_reservations_as_owner = self.future_reservations_as_owner - self.pending_reservations_as_owner - self.today_reservations_as_owner
-    return all_reservations_as_owner
+    return @all_reservations_as_owner
   end
 
   def future_reservations
