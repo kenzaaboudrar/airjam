@@ -1,6 +1,9 @@
 // Specific CSS for your home-page
 .home-container {
-  margin-top: 60px;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin-bottom: -90px;
 }
 .home-banner {
   height: 470px;
