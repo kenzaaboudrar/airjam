@@ -17,8 +17,9 @@
                 <% if @user.first_name.present? && @user.last_name.present? %>
                   <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
                 <% end %>
-                <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
+       
               <% end %>
+              <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-info" %>
           </div>
           <div class="profil-places">
             <% @user.places.each do |place| %>
@@ -31,6 +32,7 @@
                   <div class="mini-place-price">
                     <p><em><%= place.price %>€ per hour</em></p>
                   </div>
+
               </div>
             </div>
             <% end %>
@@ -73,8 +75,8 @@
             <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
           <% else %>
             <%= cl_image_tag("http://www.castlehearing.co.uk/wp-content/uploads/2016/03/profile-placeholder.jpg", class:"avatar-very-large", crop: :fill) %>
-            <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
           <% end %>
+          <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-info" %>
       </div>
       <div class="band-card">
       </div>
