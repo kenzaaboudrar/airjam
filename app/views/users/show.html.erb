@@ -2,68 +2,63 @@
 <div class="wrapper">
 
   <!-- Cas 1: un user est place owner -->
-  <% if !@user.band_manager %>
 
-  <div class="dashboard-container-owner">
-    <div class="profil">
-      <div class="profil-pic">
-          <% if @user.avatar.present? %>
-            <%= cl_image_tag(@user.avatar, class:"avatar-very-large", crop: :fill) %>
-            <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
-          <% else %>
-            <%= cl_image_tag("http://www.castlehearing.co.uk/wp-content/uploads/2016/03/profile-placeholder.jpg", class:"avatar-very-large", crop: :fill) %>
-            <% if @user.first_name.present? && @user.last_name.present? %>
-              <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
+  <% if !@user.band_manager %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="profil">
+          <div class="profil-pic">
+              <% if @user.avatar.present? %>
+                <%= cl_image_tag(@user.avatar, class:"avatar-very-large", crop: :fill) %>
+                <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
+              <% else %>
+                <%= cl_image_tag("http://www.castlehearing.co.uk/wp-content/uploads/2016/03/profile-placeholder.jpg", class:"avatar-very-large", crop: :fill) %>
+                <% if @user.first_name.present? && @user.last_name.present? %>
+                  <p class="text-center"><%= @user.first_name %> <%= @user.last_name %></p>
+                <% end %>
+                <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
+              <% end %>
+          </div>
+          <div class="profil-places">
+            <% @user.places.each do |place| %>
+              <div class="mini-card">
+                <div class="mini-card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path place.photo, height: 150, width: 200,crop: :fill %>')"> </div>
+                <div class="mini-card-content">
+                  <div class="mini-place-name">
+                    <h3><%= link_to place.name, place_path(place), target: "blank" %></h3>
+                  </div>
+                  <div class="mini-place-price">
+                    <p><em><%= place.price %>€ per hour</em></p>
+                  </div>
+              </div>
+            </div>
             <% end %>
-            <h4><%= link_to "Edit profile", edit_user_path(@user) %></h4>
-          <% end %>
-      </div>
-      <div class="profil-places">
-        <% places = @user.places %>
-        <% places.each do |place| %>
-          <div class="mini-card">
-            <div class="mini-card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path place.photo, height: 150, width: 200,crop: :fill %>')"> </div>
-            <div class="mini-card-content">
-              <div class="mini-place-name">
-                <h3><%= link_to place.name, place_path(place), target: "blank" %></h3>
-              </div>
-              <div class="mini-place-price">
-                <p><em><%= place.price %>€ per hour</em></p>
-              </div>
           </div>
         </div>
-        <% end %>
       </div>
-    </div>
+      <div class="col-md-9">
+        <div class="pending-reservations reservations">
+          <h4>Pending reservations:</h4>
+          <% @user.pending_reservations_as_owner.each do |reservation| %>
+            <%= render "shared/resa_card", reservation: reservation %>
+          <% end %>
+        </div>
 
-    <div class="pending-reservations reservations">
-      <h4>Pending reservations:</h4>
-      <% @user.pending_reservations_as_owner.each do |resa| %>
-        <h5><%= resa.place.name  %></h5>
-        <p><%= resa.date %></p>
-        <p><%= resa.price %></p>
-        <p><%= resa.user.band_name.present? ? resa.user.band_name : resa.user.first_name%></p>
-      <% end %>
-    </div>
+        <div class="today-reservations reservations">
+          <h4>Today's reservations:</h4>
+          <% @user.today_reservations_as_owner.each do |reservation| %>
+            <%= render "shared/resa_card", reservation: reservation %>
+          <% end %>
+        </div>
 
-    <div class="today-reservations reservations">
-      <h4>Today's reservations:</h4>
-      <% @user.today_reservations_as_owner.each do |resa| %>
-        <h5><%= resa.place.name  %></h5>
-        <p><%= resa.date %></p>
-        <p><%= resa.price %></p>
-        <p><%= resa.user.band_name.present? ? resa.user.band_name : resa.user.first_name%></p>
-        <% end %>
-    </div>
-
-    <div class="all-reservations reservations">
-      <h4>All my reservations:</h4>
-      <% @user.all_reservations_as_owner.each do |resa| %>
-        <h5><%= resa.place.name  %></h5>
-        <p><%= resa.date %></p>
-        <p><%= resa.price %></p>
-        <p><%= resa.user.band_name.present? ? resa.user.band_name : resa.user.first_name%></p>
-        <% end %>
+        <div class="all-reservations reservations">
+          <h4>All my reservations:</h4>
+          <% @user.all_reservations_as_owner.each do |reservation| %>
+            <%= render "shared/resa_card", reservation: reservation %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 
