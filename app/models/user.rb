@@ -17,7 +17,6 @@ class User < ApplicationRecord
     self.reservations_as_owner.select { |resa| resa unless resa.date.past?}
   end
 
-
   def pending_reservations_as_owner
     @pending_reservations_as_owner = self.future_reservations_as_owner.select {|resa| resa if resa.status == "pending"}
     if @pending_reservations_as_owner.length > 0
@@ -40,6 +39,11 @@ class User < ApplicationRecord
 
   def future_reservations
     self.reservations.select { |resa| resa unless resa.date.past?}
+  end
+
+  def past_accepted_reservations
+    past_reservations = self.reservations - self.future_reservations
+    return past_reservations.select { |resa| resa if resa.status.downcase == "accepted"}
   end
 
   def pending_reservations

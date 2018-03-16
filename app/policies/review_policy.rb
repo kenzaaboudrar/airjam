@@ -6,6 +6,7 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def create?
-    user.reservations.find_by(place_id: record.place.id)
+    @resa = user.past_accepted_reservations.select {|resa| resa if resa.place == record.place }
+    @resa.length > 0
   end
 end
