@@ -30,7 +30,7 @@ class User < ApplicationRecord
   def today_reservations_as_owner
     @today = Date.today
     @today_reservations_as_owner = self.future_reservations_as_owner.select {|resa| resa if (resa.date.month == @today.month && resa.date.day == @today.day && resa.date.year == @today.year) }
-    @today_reservations_as_owner.select {|resa| resa if resa.status.downcase == "accepted"}
+    return @today_reservations_as_owner.select {|resa| resa if resa.status.downcase == "accepted"} 
   end
 
   def all_reservations_as_owner
@@ -44,13 +44,12 @@ class User < ApplicationRecord
 
   def pending_reservations
     @pending_reservations = self.future_reservations.select {|resa| resa if resa.status == "pending"}
-    @pending_reservations.sort_by { |resa| resa.date} if @pending_reservations.length > 0
-    return @pending_reservations
+    return @pending_reservations.sort_by { |resa| resa.date} if @pending_reservations.length > 0
   end
 
   def today_reservations
     @today = Date.today
-    self.reservations.select {|resa| resa if (resa.date.month == @today.month && resa.date.day == @today.day && resa.date.year == @today.year) }
+    return self.reservations.select {|resa| resa if (resa.date.month == @today.month && resa.date.day == @today.day && resa.date.year == @today.year) }
   end
 
   def all_reservations
